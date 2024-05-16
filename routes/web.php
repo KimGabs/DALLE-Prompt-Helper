@@ -60,3 +60,6 @@ Route::delete('/delete-post/{post}', [PostController::class, 'deletePost']);
 
 // Parameter related routes
 Route::post('laravel-xampp/public/create-parameter', [ParamController::class, 'createParam']);
+Route::put('laravel-xampp/public/edit-parameter', [ParamController::class, 'editParam']);
+Route::put('/edit-parameter/{parameter}', [ParamController::class, 'update'])->name('parameters.update');
+

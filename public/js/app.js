@@ -2067,6 +2067,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_helper__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_components_helper__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _components_create_param__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/create-param */ "./resources/js/components/create-param.js");
 /* harmony import */ var _components_create_param__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_components_create_param__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _components_edit_modal__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/edit-modal */ "./resources/js/components/edit-modal.js");
+/* harmony import */ var _components_edit_modal__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_components_edit_modal__WEBPACK_IMPORTED_MODULE_3__);
+
 
 
 
@@ -2121,6 +2124,63 @@ document.addEventListener('DOMContentLoaded', function () {
   checkParamType();
   inputImage.addEventListener('change', checkFileInput);
   paramTypeSelect.addEventListener('change', checkParamType);
+});
+
+/***/ }),
+
+/***/ "./resources/js/components/edit-modal.js":
+/*!***********************************************!*\
+  !*** ./resources/js/components/edit-modal.js ***!
+  \***********************************************/
+/***/ (() => {
+
+document.addEventListener('DOMContentLoaded', function () {
+  var editModal = document.getElementById('editModal');
+  var closeEditModal = document.getElementById('closeEditModal');
+
+  // Function to open edit modal
+  function openEditModal(id, name, type, img) {
+    editModal.style.display = 'block';
+    if (type < 6) {
+      document.getElementById('param_image').style.display = 'none';
+      document.getElementById('paramImg').style.display = 'none';
+    } else {
+      document.getElementById('param_image').style.display = 'block';
+      document.getElementById('paramImg').style.display = 'block';
+    }
+    document.getElementById('editForm').action = '/edit-parameter/' + id;
+    document.getElementById('paramName').value = name;
+    document.getElementById('param_TYPE').value = type;
+    console.log(img);
+    document.getElementById('paramImg').setAttribute('src', '../storage/app/public/' + img);
+  }
+
+  // Function to close edit modal
+  function closeModal() {
+    editModal.style.display = 'none';
+  }
+
+  // Event listener to open edit modal when edit button is clicked
+  document.querySelectorAll('.edit-btn').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      // Extract parameter data from data attributes or other means if necessary
+      var id = btn.getAttribute('data-id');
+      var name = btn.getAttribute('data-name');
+      var type = btn.getAttribute('data-type');
+      var img = btn.getAttribute('data-img');
+      openEditModal(id, name, type, img);
+    });
+  });
+
+  // Event listener to close edit modal when close button is clicked
+  closeEditModal.addEventListener('click', closeModal);
+
+  // Event listener to close edit modal when clicking outside modal
+  window.addEventListener('click', function (event) {
+    if (event.target == editModal) {
+      closeModal();
+    }
+  });
 });
 
 /***/ }),

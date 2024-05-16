@@ -4,6 +4,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <script src="{{ asset('js/app.js') }}"></script>
+    <link href="{{ asset('../resources/sass/app.css') }}" rel="stylesheet">
     <title>Document</title>
 </head>
 <body>
@@ -21,11 +22,12 @@
         </ul>
     </nav>
     <h1>Dashboard</h1>
+    {{-- Create New Parameter --}}
     <div style="border: 3px solid black;">
         <h2>Create a New Parameter</h2>
         <form action="laravel-xampp/public/create-parameter" method="POST" enctype="multipart/form-data">
             @csrf
-            <input type="text" name="param_name" placeholder="Parameter Name">
+            <input type="text" name="param_name" placeholder="Parameter Name" required>
                 <select name="param_type" id="paramType">
                     <option value="0" selected>---</option>
                     @foreach (config('parameters.types') as $key => $value)
@@ -42,8 +44,13 @@
         @foreach ($parameters as $parameter)
             <div style="background-color: #b2f6dc; padding: 10px; margin: 0px; border: 2px solid black">
                 <p>Name: {{$parameter['param_name']}} || {{ config('parameters.types.' . $parameter->param_type) }} ||
-                    <a href="{{ url('edit-parameter', ['parameter' => $parameter->id]) }}">Edit</a>
+                    <a class='edit-btn' href="javascript:void(0);" data-id="{{ $parameter->id }}" data-name="{{ $parameter['param_name'] }}" data-type="{{ $parameter['param_type'] }}" data-img="{{ $parameter->param_image_path }}">Edit</a>
                 </p>
+                @if ($parameter->param_image_path)
+                    <img style="height: 150px; width: 150px; margin: 4px;" src="{{ asset('../storage/app/public/' . $parameter->param_image_path) }}" alt="{{ $parameter['param_name'] }}">
+                @else
+                
+                @endif
                 <form action="{{ url('delete-parameter', ['parameter' => $parameter->id]) }}" method="POST">
                     @csrf
                     @method('DELETE')
@@ -51,6 +58,35 @@
                 </form>
             </div>
         @endforeach
+    </div>
+    {{-- Show Edit Modal --}}
+    <div class="modal" id="editModal">
+        <div class="modal-content">
+            <span class="close" id="closeEditModal">&times;</span>
+            <h2>Edit Parameter</h2>
+            <form id="editForm" method="POST" action="">
+                @csrf
+                @method('PUT')
+                <div class="form-group">
+                    <label for="paramName">Parameter Name</label>
+                    <input type="text" name="param_name" class="form-control" id="paramName" required>
+                </div>
+                <div class="form-group">
+                    <label for="paramType">Parameter Type</label>
+                    <select name="paramType" id="param_TYPE" class="form-control">
+                        <option value="0" selected disabled>--Select Parameter--</option>
+                        @foreach (config('parameters.types') as $key => $value)
+                            <option value="{{ $key }}">{{ $value }}</option>
+                        @endforeach            
+                    </select>
+                </div>
+                <div class="form-group">
+                    <input type="file" name="param_image_path" id="param_image">
+                    <img id="paramImg" style="height: 150px; width: 150px; margin: 4px;" src="" alt="">
+                </div>
+                <button type="submit">Save</button>
+            </form>
+        </div>
     </div>
 </body>
 </html>

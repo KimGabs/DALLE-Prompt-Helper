@@ -27,13 +27,14 @@ class ParamController extends Controller
         }
 
         $incomingFields = $request->validate([
-            'title' => 'required',
-            'body' => 'required'
+            'param_name' => 'required',
+            'param_type' => 'required',
+            'param_image_path' => 'sometimes|image|mimes:jpeg,png,jpg,gif|max:2048'
         ]);
 
         // Use strip_tags to avoid cross-site scripting (xss)
-        $incomingFields['title'] = strip_tags($incomingFields['title']);
-        $incomingFields['body'] = strip_tags($incomingFields['body']);
+        $incomingFields['param_name'] = strip_tags($incomingFields['param_name']);
+        $incomingFields['param_type'] = strip_tags($incomingFields['param_type']);
 
         $param->update($incomingFields);
         return redirect('/');
