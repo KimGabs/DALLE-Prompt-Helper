@@ -1,13 +1,35 @@
 document.addEventListener('DOMContentLoaded', function () {
 
-    var param_type = document.getElementById('paramType').value;
+    const paramTypeSelect = document.getElementById('paramType');
+    const submit_btn = document.getElementById('submit-btn');
+    const inputImage = document.getElementById('input_image');
 
-    if (param_type < 6) {
-        var image_input = document.getElementById('input_image');
-        image_input.style.visibility = 'hidden';
+    function checkFileInput() {
+        // console.log('inputImage:', inputImage.files.length);
+        if (inputImage.files.length == 0) {
+            submit_btn.disabled = true;
+        } else {
+            submit_btn.disabled = false;
+        }
     }
-    else {
-        var image_input = document.getElementById('input_image');
-        image_input.style.visibility = 'visible';
+
+    function checkParamType() {
+        const paramType = paramTypeSelect.value;
+        // console.log('param_type:', paramType);
+        submit_btn.disabled = (paramType == 0);
+        
+        if (paramType < 6) {
+            inputImage.style.visibility = 'hidden';
+        }
+        else {
+            inputImage.style.visibility = 'visible';
+            checkFileInput();
+        }
     }
+
+
+    checkParamType();
+
+    inputImage.addEventListener('change', checkFileInput);
+    paramTypeSelect.addEventListener('change', checkParamType);
 });

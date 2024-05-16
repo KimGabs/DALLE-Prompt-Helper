@@ -2096,20 +2096,31 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 /***/ (() => {
 
 document.addEventListener('DOMContentLoaded', function () {
-  var paramTypeElement = document.getElementById('paramType');
-  var imageInput = document.getElementById('input_image');
-
-  // Function to toggle image input visibility
-  function toggleImageInputVisibility() {
-    var paramTypeValue = parseInt(paramTypeElement.value, 10);
-    imageInput.style.visibility = paramTypeValue < 6 ? 'hidden' : 'visible';
+  var paramTypeSelect = document.getElementById('paramType');
+  var submit_btn = document.getElementById('submit-btn');
+  var inputImage = document.getElementById('input_image');
+  function checkFileInput() {
+    // console.log('inputImage:', inputImage.files.length);
+    if (inputImage.files.length == 0) {
+      submit_btn.disabled = true;
+    } else {
+      submit_btn.disabled = false;
+    }
   }
-
-  // Initial check
-  toggleImageInputVisibility();
-
-  // Event listener for changes in paramType
-  paramTypeElement.addEventListener('change', toggleImageInputVisibility);
+  function checkParamType() {
+    var paramType = paramTypeSelect.value;
+    // console.log('param_type:', paramType);
+    submit_btn.disabled = paramType == 0;
+    if (paramType < 6) {
+      inputImage.style.visibility = 'hidden';
+    } else {
+      inputImage.style.visibility = 'visible';
+      checkFileInput();
+    }
+  }
+  checkParamType();
+  inputImage.addEventListener('change', checkFileInput);
+  paramTypeSelect.addEventListener('change', checkParamType);
 });
 
 /***/ }),
