@@ -23,7 +23,7 @@
     </nav>
     @auth
         <p>Congrats, you are logged in</p>
-        <form action="laravel-xampp/public/logout" method="POST">
+        <form action="DALLE-Prompt-Helper/public/logout" method="POST">
             @csrf
             <button>Log out</button>
         </form>
@@ -32,7 +32,7 @@
     <div style="border: 3px solid black;">
         <h2>Login</h2>
         <span>password: opensesame1</span>
-        <form action="laravel-xampp/public/login" method="POST">
+        <form action="DALLE-Prompt-Helper/public/login" method="POST">
             @csrf
             <input name="userName" type="text" placeholder="name">
             <input name="userPassword" type="password" placeholder="password">

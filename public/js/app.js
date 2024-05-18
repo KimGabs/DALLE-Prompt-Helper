@@ -2141,6 +2141,8 @@ document.addEventListener('DOMContentLoaded', function () {
   // Function to open edit modal
   function openEditModal(id, name, type, img) {
     editModal.style.display = 'block';
+
+    // Hide file input if type is below 6 .
     if (type < 6) {
       document.getElementById('param_image').style.display = 'none';
       document.getElementById('paramImg').style.display = 'none';
@@ -2148,11 +2150,10 @@ document.addEventListener('DOMContentLoaded', function () {
       document.getElementById('param_image').style.display = 'block';
       document.getElementById('paramImg').style.display = 'block';
     }
-    document.getElementById('editForm').action = '/edit-parameter/' + id;
+    document.getElementById('editForm').action = 'edit-parameter/' + id;
     document.getElementById('paramName').value = name;
     document.getElementById('param_TYPE').value = type;
-    console.log(img);
-    document.getElementById('paramImg').setAttribute('src', '../storage/app/public/' + img);
+    document.getElementById('paramImg').setAttribute('src', '../storage/app/public/images/' + img);
   }
 
   // Function to close edit modal
@@ -2180,6 +2181,16 @@ document.addEventListener('DOMContentLoaded', function () {
     if (event.target == editModal) {
       closeModal();
     }
+  });
+});
+document.addEventListener('DOMContentLoaded', function () {
+  document.getElementById('param_image').addEventListener('change', function (e) {
+    var file = e.target.files[0];
+    var reader = new FileReader();
+    reader.onload = function () {
+      document.getElementById('paramImg').src = reader.result;
+    };
+    reader.readAsDataURL(file);
   });
 });
 
