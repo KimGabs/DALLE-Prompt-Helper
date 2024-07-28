@@ -2,6 +2,7 @@ document.addEventListener('DOMContentLoaded', function () {
     var userInput = document.getElementById('userInput');
     var readOnlyInput = document.getElementById('readOnlyInput');
     var dropdowns = document.querySelectorAll('.parameters'); 
+    var confirmButton = document.getElementById('confirmButton'); 
 
     // Event listener for user input
     if (userInput) {
@@ -16,6 +17,13 @@ document.addEventListener('DOMContentLoaded', function () {
             updateReadOnlyInput();
         });
     });
+    
+    // Event listener for buttons input change
+    if (confirmButton) {
+        confirmButton.addEventListener('click', function () {
+            updateReadOnlyInput();
+        });
+    }
 
     function updateReadOnlyInput() {
         var userInputValue = userInput ? userInput.value : '';
@@ -32,6 +40,15 @@ document.addEventListener('DOMContentLoaded', function () {
             combinedValues += userInputValue ? ', ' + dropdownValues.join(', ') : dropdownValues.join(', ');
         }
 
+        if (buttonsInput && buttonsInput.value) {
+            combinedValues += combinedValues ? ', ' + buttonsInput.value : buttonsInput.value;
+        }
+
         readOnlyInput.value = combinedValues;
     }
+
+    function refreshInput() {
+        readOnlyInput.value = combinedValues;
+    }    
+
 });

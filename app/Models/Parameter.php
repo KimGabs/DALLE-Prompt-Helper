@@ -10,10 +10,12 @@ class Parameter extends Model
     use HasFactory;
 
     protected $fillable = [
-        'param_name',
-        'param_type',
-        'param_image_path',
-        'user_id'
+        'user_id',
+        'name',
+        'type',
+        'image',
+        'text_color',
+        'custom'
     ];
 
     public function user() {

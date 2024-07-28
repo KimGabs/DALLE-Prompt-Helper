@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', function () {
     function checkParamType() {
         const paramType = paramTypeSelect.value;
         // console.log('param_type:', paramType);
-        submit_btn.disabled = (paramType == 0);
+        // submit_btn.disabled = (paramType == 0);
         
         if (paramType < 6) {
             inputImage.style.visibility = 'hidden';
