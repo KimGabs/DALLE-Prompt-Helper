@@ -24,7 +24,7 @@
         
         @yield('hero')
 
-            <main class="container mx-auto px-5 flex flex-grow">
+            <main class="container overflow-x-hidden mx-auto px-5 flex flex-grow">
                 {{ $slot }}
             </main>
 

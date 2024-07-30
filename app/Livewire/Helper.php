@@ -17,7 +17,7 @@ class Helper extends Component
 
         // Excluded from dropdown
         $excludedTypes = [
-            'Vibes', 'Styles', 'Lighting', 
+            'Film types', 'Vibes', 'Styles', 'Lighting', 
             'Artists', 'Colors', 'Materials'
         ]; 
 

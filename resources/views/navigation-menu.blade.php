@@ -11,9 +11,9 @@
                 <x-nav-link href="{{ route('posts.index') }}" :active="request()->routeIs('posts.index')">
                     {{ __('My Prompts') }}
                 </x-nav-link>
-                {{-- <x-nav-link href="{{ route('helper') }}" :active="request()->routeIs('helper')">
+                <x-nav-link href="{{ route('helper') }}" :active="request()->routeIs('helper.index')">
                     {{ __('Helper') }}
-                </x-nav-link> --}}
+                </x-nav-link>
             </ul>
         </div>
     </div>

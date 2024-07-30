@@ -11,17 +11,17 @@
             <p class="text-green-700 pb-6">{{ session('success') }}</p>
         @endif
 
-    <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+    <div class="relative overflow-x-auto shadow-md sm:rounded-lg mb-8">
         <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
             <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                 <tr>
-                    <th scope="col" class="px-6 py-3">
+                    <th scope="col" class="px-9 py-3">
                         Name
                     </th>
-                    <th scope="col" class="px-6 py-3">
+                    <th scope="col" class="px-9 py-3">
                         Type
                     </th>
-                    <th scope="col" class="px-6 py-3">
+                    <th scope="col" class="px-9 py-3">
                         Action
                     </th>
                 </tr>
@@ -29,13 +29,13 @@
             <tbody>
                 @foreach($parameters as $parameter)
                 <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                    <th scope="row" class="px-9 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                         {{ $parameter->name }}
                     </th>
-                    <td class="px-6 py-4">
+                    <td class="px-9 py-4">
                         {{ $parameter->type }}
                     </td>
-                    <td class="px-6 py-4">
+                    <td class="px-9 py-4">
                         <a href="{{ route('parameters.edit', $parameter->id) }}" class="font-medium text-blue-600 dark:text-blue-500 hover:underline mr-2">Edit</a>
                         <form action="{{ route('parameters.destroy', $parameter->id) }}" method="POST" style="display:inline;">
                             @csrf
@@ -47,6 +47,10 @@
                 @endforeach
             </tbody>
         </table>
+    </div>
+    <div class="mt-1 mb-6">
+        {{-- {{ $this->posts->onEachSide(1)->links() }} --}}
+        {{ $parameters->onEachSide(0)->links() }}
     </div>
 {{-- 
     <table>

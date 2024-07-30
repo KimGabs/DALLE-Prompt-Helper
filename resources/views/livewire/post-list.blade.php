@@ -18,6 +18,6 @@
     </div>
 
     <div class="my-3">
-        {{ $this->posts->onEachSide(1)->links() }}
+        {{ $this->posts->onEachSide(0)->links() }}
     </div>
 </div>

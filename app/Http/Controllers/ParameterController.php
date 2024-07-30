@@ -20,7 +20,7 @@ namespace App\Http\Controllers;
             if (!auth()->check()) {
                 return redirect('/login');
             }
-            $parameters = Parameter::all();
+            $parameters = Parameter::paginate(10); // 10 items per page
             return view('parameters.index', compact('parameters'));
         }    
 
@@ -37,19 +37,25 @@ namespace App\Http\Controllers;
             $incomingFields = $request->validate([
                 'name' => 'required|string|max:255|unique:parameters,name,',
                 'type' => 'required',
-                'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+                'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:4096',
                 'text_color' => 'nullable|string|max:7',
                 'custom' => 'nullable|boolean',
             ]);
             
+
             $incomingFields['param_name'] = strip_tags($incomingFields['name']);
             $incomingFields['param_type'] = strip_tags($incomingFields['type']);
-            $incomingFields['param_image'] = strip_tags($incomingFields['image']);
+            if (isset($incomingFields['image'])) {
+                $incomingFields['param_image'] = strip_tags($incomingFields['image']);
+            }
             $incomingFields['text_color'] = strip_tags($incomingFields['text_color']);
 
             $imagePath = null;
             if ($request->hasFile('image')) {
-                $imagePath = $request->file('image')->store('/parameters', 'public');
+                $ext = $request->file('image')->extension();
+                $fileName = strtolower($incomingFields['param_name']);
+                $fileName = str_replace(' ', '-', $fileName);
+                $imagePath = $request->file('image')->storeAs('/parameters', $fileName . '.' . $ext,'public');
             }
 
             Parameter::create([
