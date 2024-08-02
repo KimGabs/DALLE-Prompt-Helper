@@ -35,8 +35,12 @@
     display: none;
 }
 
-.block.svelte-12cmxck{
+.block.svelte-12cmxck {
     box-shadow: none !important;
+}
+
+.preview.svelte-hpz95u {
+    position: fixed !important;
 }
 
 .form.svelte-sfqy0y {

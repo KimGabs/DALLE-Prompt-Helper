@@ -11,6 +11,9 @@ use App\Http\Controllers\ParameterController;
 Route::get('/', HomeController::class)->name('home');
 Route::get('/myprompts', [PostController::class, 'index'])->name('posts.index');
 Route::get('/helper', [HelperController::class, 'index'])->name('helper');
+Route::post('/helper', [HelperController::class, 'create'])->name('helper.create');
+Route::get('posts/{slug}', [PostController::class, 'show'])->name('posts.show');
+
 // Route::get('/helper', [ParameterController::class, 'index'])->name('helper.helper');
 Route::resource('parameters', ParameterController::class);
 

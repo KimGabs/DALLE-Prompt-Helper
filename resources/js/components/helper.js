@@ -1,10 +1,11 @@
-document.addEventListener('DOMContentLoaded', function () {
+document.addEventListener('livewire:navigated', function () {    
     var userInput = document.getElementById('userInput');
     var readOnlyInput = document.getElementById('readOnlyInput');
     var dropdowns = document.querySelectorAll('.parameters'); 
     var confirmButtons = document.querySelectorAll('.confirmButton');
     var buttonsInput = document.getElementById('buttonsInput'); 
     var copyButton = document.getElementById('copyButton');
+    var finalPrompt = document.getElementById('finalPrompt');
 
     copyButton.addEventListener('click', function() {
         navigator.clipboard.writeText(readOnlyInput.value)
@@ -57,48 +58,10 @@ document.addEventListener('DOMContentLoaded', function () {
         }
 
         readOnlyInput.value = combinedValues;
+        finalPrompt.value = readOnlyInput.value;
     }
-
 });
 
-document.addEventListener('livewire:init', function () {
-    var userInput = document.getElementById('userInput');
-    var dropdowns = document.querySelectorAll('.parameters'); 
-    var buttonsInput = document.getElementById('buttonsInput'); 
-    var readOnlyInput = document.getElementById('readOnlyInput');
-
-    Livewire.on('resetUI', function () {
-        resetDropdowns();
-        updateReadOnlyInput();
-        userInput.value = '';
-        readOnlyInput.value = '';
-    });
-
-    function resetDropdowns() {
-        dropdowns.forEach(function(dropdown) {
-            dropdown.selectedIndex = 0;
-        });
-    }
-
-    function updateReadOnlyInput() {
-        var userInputValue = userInput ? userInput.value : '';
-        var dropdownValues = [];
-
-        dropdowns.forEach(function(dropdown) {
-            if (dropdown.value) {
-                dropdownValues.push(dropdown.value);
-            }
-        });
-
-        var combinedValues = userInputValue;
-        if (dropdownValues.length > 0) {
-            combinedValues += userInputValue ? ', ' + dropdownValues.join(', ') : dropdownValues.join(', ');
-        }
-
-        if (buttonsInput && buttonsInput.value) {
-            combinedValues += combinedValues ? ', ' + buttonsInput.value : buttonsInput.value;
-        }
-
-        readOnlyInput.value = combinedValues;
-    }
+document.addEventListener("turbolinks:load", function() {
+    window.livewire.rescan();
 });

@@ -13,11 +13,31 @@ class Post extends Model
     use HasFactory;
     use SoftDeletes;
 
+    protected $fillable = [
+        'user_id',
+        'title', 
+        'slug', 
+        'body', 
+        'image', 
+        'category',
+        'ai_model',
+        'version',
+        'width',
+        'height',
+        'published_at',
+        'created_at', 
+        'updated_at'
+    ];
+
     protected function casts(): array
     {
         return [
             'published_at' => 'datetime',
         ];
+    }
+
+    public function getWidth(){
+        return $this->width;
     }
 
     public function author() {
@@ -31,6 +51,10 @@ class Post extends Model
 
     public function getExcerpt() {
         return Str::limit(strip_tags($this->body), 150);
+    }
+
+    public function readablePublished() {
+        return Carbon::parse($this->published_at)->format('F j, Y');
     }
 
     public function scopePublished($query) {

@@ -4,7 +4,7 @@
         <h1 class="text-xl font-bold subpixel-antialiased">Parameters</h1>
     </div>
     <div class="w-full text-left pb-8">
-        <a href="{{ route('parameters.create') }}" class="px-4 py-2 bg-blue-500 text-white rounded">Create</a>    
+        <a href="{{ route('parameters.create') }}" class="px-4 py-2 bg-blue-500 text-white rounded">Create</a>
     </div>
 
         @if(session('success'))

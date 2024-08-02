@@ -1,11 +1,11 @@
 <div>
     <form-section>
         <div class="w-full text-center mt-7">
-            <h1 class="text-2xl font-bold dark:text-white">Prompt Helper</h1>
+            <h1 class="text-2xl font-bold dark:text-black">Prompt Helper</h1>
             <br>
-            <textarea id="userInput" name="userInput" placeholder="Enter your main idea here" rows="6" cols="80" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"></textarea>
+            <textarea id="userInput" name="userInput" placeholder="Enter your main idea here" rows="6" cols="80" class="block p-2.5 w-full text-lg text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required></textarea>
             <br>
-            <textarea id="readOnlyInput" name="readOnlyInput" placeholder="Your output prompt will be display here" rows="6" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" readonly></textarea>
+            <textarea id="readOnlyInput" name="body" placeholder="Your output prompt will be display here" rows="6" class="block p-2.5 w-full text-lg text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" readonly></textarea>
         </div>
         <div class="rounded-lg border border-gray-200 shadow-md px-7 py-8 mt-8">
             <div class="grid grid-rows-1 grid-flow-col gap-4 h-30">
@@ -14,7 +14,7 @@
                 <div class="col-span-2">
                     <div>
                         <label>{{ $type }}</label>
-                    <select name="parameters[{{ $type }}]" class="parameters bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 w-full px-5 py-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 mt-2">
+                    <select name="parameters[{{ $type }}]" class="parameters bg-gray-50 border border-gray-300 text-gray-900 text-md rounded-lg focus:ring-blue-500 focus:border-blue-500 w-full px-5 py-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 mt-2">
                         <option value="">--select--</option>
                         @foreach ($parameters as $parameter)
                             <option value="{{ $parameter->name }}">{{ $parameter->name }}</option>
