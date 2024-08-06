@@ -73,4 +73,12 @@ class Post extends Model
         $this->views++;
         return $this->save();
     }
+
+    public function likes(){
+        return $this->belongsToMany(User::class, 'post_like')->withTimestamps();
+    }
+
+    public function numLikes(){
+        return $this->likes()->count();
+    }
 }

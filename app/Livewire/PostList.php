@@ -9,6 +9,7 @@ use Livewire\Attributes\Url;
 use Livewire\WithPagination;
 use Livewire\Attributes\Computed;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\RedirectResponse;
 
 class PostList extends Component
 {
@@ -30,6 +31,12 @@ class PostList extends Component
         $this->search = $search;
     }
 
+    public function clearFilters(){
+        $this->search='';
+        // $this->category = '';
+        $this->resetPage();
+    }
+
     #[Computed()]
     public function myPosts() {
         return Post::published()
@@ -40,7 +47,7 @@ class PostList extends Component
                   ->orWhere('category', 'like', "%{$this->search}%");;
         })
         ->where('user_id', Auth::id())
-        ->paginate(4);
+        ->paginate(6);
     }
 
     #[Computed()]
@@ -54,6 +61,13 @@ class PostList extends Component
         })
         ->paginate(4);
     }
+
+    // public function mount()
+    // {
+    //     if (!auth()->check()) {
+    //         redirect('/login')->send();
+    //     }
+    // }
 
     public function render()
     {

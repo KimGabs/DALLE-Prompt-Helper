@@ -7,14 +7,21 @@
         @include('livewire.partials.search-box')
     </div>
     <div class="py-4">
-        <div class="text-gray-700">
+        <div class="text-gray-700 mb-4">
+            @if($search)
+                <button class="text-gray-800 text-xs mr-1 bg-gray-200 rounded-full px-2 py-1" wire:click="clearFilters()">X</button>
+            @endif
             @if ($search)
-                Search results for "{{ $search }}"
+            <span class="ml-1">
+                Search results for <strong>"{{$search}}"</strong>
+            </span>
             @endif
         </div>
+        <div class="grid grid-cols-6 gap-7">
         @foreach ($this->myPosts as $post)
             <x-posts.post-item :post=$post />
         @endforeach
+        </div>
     </div>
 
     <div class="my-3">

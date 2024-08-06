@@ -141,6 +141,10 @@ class ComposerStaticInitda9b7a1dc1dd923105198c572cc7df8d
             'Laravel\\Jetstream\\' => 18,
             'Laravel\\Fortify\\' => 16,
         ),
+        'J' => 
+        array (
+            'Jorenvh\\Share\\' => 14,
+        ),
         'I' => 
         array (
             'Intervention\\Image\\' => 19,
@@ -483,6 +487,10 @@ class ComposerStaticInitda9b7a1dc1dd923105198c572cc7df8d
         array (
             0 => __DIR__ . '/..' . '/laravel/fortify/src',
         ),
+        'Jorenvh\\Share\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/jorenvanhocht/laravel-share/src',
+        ),
         'Intervention\\Image\\' => 
         array (
             0 => __DIR__ . '/..' . '/intervention/image/src',
@@ -615,6 +623,7 @@ class ComposerStaticInitda9b7a1dc1dd923105198c572cc7df8d
         'App\\Http\\Controllers\\PostController' => __DIR__ . '/../..' . '/app/Http/Controllers/PostController.php',
         'App\\Livewire\\Helper' => __DIR__ . '/../..' . '/app/Livewire/Helper.php',
         'App\\Livewire\\Helper\\CreateParam' => __DIR__ . '/../..' . '/app/Livewire/Helper/CreateParam.php',
+        'App\\Livewire\\LikeButton' => __DIR__ . '/../..' . '/app/Livewire/LikeButton.php',
         'App\\Livewire\\ParameterModal' => __DIR__ . '/../..' . '/app/Livewire/ParameterModal.php',
         'App\\Livewire\\ParentComponent' => __DIR__ . '/../..' . '/app/Livewire/ParentComponent.php',
         'App\\Livewire\\PostList' => __DIR__ . '/../..' . '/app/Livewire/PostList.php',
@@ -3386,6 +3395,9 @@ class ComposerStaticInitda9b7a1dc1dd923105198c572cc7df8d
         'Intervention\\Image\\Typography\\FontFactory' => __DIR__ . '/..' . '/intervention/image/src/Typography/FontFactory.php',
         'Intervention\\Image\\Typography\\Line' => __DIR__ . '/..' . '/intervention/image/src/Typography/Line.php',
         'Intervention\\Image\\Typography\\TextBlock' => __DIR__ . '/..' . '/intervention/image/src/Typography/TextBlock.php',
+        'Jorenvh\\Share\\Providers\\ShareServiceProvider' => __DIR__ . '/..' . '/jorenvanhocht/laravel-share/src/Providers/ShareServiceProvider.php',
+        'Jorenvh\\Share\\Share' => __DIR__ . '/..' . '/jorenvanhocht/laravel-share/src/Share.php',
+        'Jorenvh\\Share\\ShareFacade' => __DIR__ . '/..' . '/jorenvanhocht/laravel-share/src/ShareFacade.php',
         'Laravel\\Fortify\\Actions\\AttemptToAuthenticate' => __DIR__ . '/..' . '/laravel/fortify/src/Actions/AttemptToAuthenticate.php',
         'Laravel\\Fortify\\Actions\\CanonicalizeUsername' => __DIR__ . '/..' . '/laravel/fortify/src/Actions/CanonicalizeUsername.php',
         'Laravel\\Fortify\\Actions\\CompletePasswordReset' => __DIR__ . '/..' . '/laravel/fortify/src/Actions/CompletePasswordReset.php',

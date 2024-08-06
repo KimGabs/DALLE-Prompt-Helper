@@ -8,7 +8,7 @@
             <div class="grid-cols-1 w-full">
                 {{-- Author Profile --}}
                 <div class="row-auto justify-between mb-4">
-                    <div>
+                    <div class="flex justify-between">
                         <div class="inline-flex items-center">
                             <a href="#">
                                 <img src="{{ $post->author->profile_photo_url }}" class="h-10 rounded-full" alt="Profile of {{ $post->author->name }}">
@@ -25,6 +25,24 @@
                                        Published at {{ $post->readablePublished() }}
                                     </span>
                                 </div>
+                            </div>
+                        </div>
+                        <div class="inline-flex items-center">
+                            <div class="inline-flex items-center">
+                                <span wire:poll.visible class="text-md inline-flex items-center text-center">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="size-5 mx-1">
+                                        <path d="M10 12.5a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5Z" />
+                                        <path fill-rule="evenodd" d="M.664 10.59a1.651 1.651 0 0 1 0-1.186A10.004 10.004 0 0 1 10 3c4.257 0 7.893 2.66 9.336 6.41.147.381.146.804 0 1.186A10.004 10.004 0 0 1 10 17c-4.257 0-7.893-2.66-9.336-6.41ZM14 10a4 4 0 1 1-8 0 4 4 0 0 1 8 0Z" clip-rule="evenodd" />
+                                      </svg>                              
+                                    {{ $post->views  }}
+                                    {{-- @livewire('LikeButton', ['post' => $post]) --}}
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+                                        class="size-5 mx-1 text-black">
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                            d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z" />
+                                    </svg>     
+                                    {{ $post->likes()->count() }}
+                                </span>
                             </div>
                         </div>
                     </div>

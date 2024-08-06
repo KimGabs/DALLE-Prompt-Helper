@@ -9,6 +9,7 @@
         "ext-intl": "*",
         "dasundev/livewire-dropzone": "*",
         "intervention/image": "^3.7",
+        "jorenvanhocht/laravel-share": "^4.2",
         "laravel/framework": "^11.0",
         "laravel/jetstream": "^5.1",
         "laravel/sanctum": "^4.0",
