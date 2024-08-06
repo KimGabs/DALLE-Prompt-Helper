@@ -8,6 +8,7 @@ use Livewire\Attributes\On;
 use Livewire\Attributes\Url;
 use Livewire\WithPagination;
 use Livewire\Attributes\Computed;
+use Illuminate\Support\Facades\Auth;
 
 class PostList extends Component
 {
@@ -30,10 +31,27 @@ class PostList extends Component
     }
 
     #[Computed()]
+    public function myPosts() {
+        return Post::published()
+        ->orderBy('published_at', $this->sort)
+        ->where(function ($query) {
+            $query->where('title', 'like', "%{$this->search}%")
+                  ->orWhere('body', 'like', "%{$this->search}%")
+                  ->orWhere('category', 'like', "%{$this->search}%");;
+        })
+        ->where('user_id', Auth::id())
+        ->paginate(4);
+    }
+
+    #[Computed()]
     public function posts() {
         return Post::published()
         ->orderBy('published_at', $this->sort)
-        ->where('title', 'like', "%{$this->search}%")
+        ->where(function ($query) {
+            $query->where('title', 'like', "%{$this->search}%")
+                  ->orWhere('body', 'like', "%{$this->search}%")
+                  ->orWhere('category', 'like', "%{$this->search}%");
+        })
         ->paginate(4);
     }
 

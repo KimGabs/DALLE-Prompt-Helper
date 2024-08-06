@@ -53,6 +53,10 @@ class Post extends Model
         return Str::limit(strip_tags($this->body), 150);
     }
 
+    public function getExcerptTitle() {
+        return Str::limit(strip_tags($this->body), 100);
+    }
+
     public function readablePublished() {
         return Carbon::parse($this->published_at)->format('F j, Y');
     }
@@ -63,5 +67,10 @@ class Post extends Model
 
     public function scopeFeatured($query) {
         $query->where('featured', true);
+    }
+
+    public function incrementReadCount() {
+        $this->views++;
+        return $this->save();
     }
 }

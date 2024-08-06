@@ -45,7 +45,7 @@
                             <div class="flex flex-col flex-auto gap-4">
                                 <div class="flex-auto">
                                     <label for="previewPrompt" class="block font-medium text-gray-900 dark:text-white">Prompt</label>
-                                    <textarea name="previewPrompt" type="text" id="finalPrompt" rows="3" class="block resize-none w-full p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 text-md focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" readonly>
+                                    <textarea name="previewPrompt" type="text" id="finalPrompt" rows="3" class="block resize-none w-full p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 text-md focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" readonly required>
                                     </textarea>
                                 </div>
                                 <div class="flex flex-row flex-auto gap-4">
@@ -114,12 +114,6 @@
                                 </div>
                             </div>
                         </div>
-                        @error('image')
-                            <span class="text-red-500 text-xs">{{ $message }}</span>
-                        @enderror
-                        @error('output')
-                            <span class="text-red-500 text-xs">{{ $message }}</span>
-                        @enderror
                     </div>
                 </div>
 

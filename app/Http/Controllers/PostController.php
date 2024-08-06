@@ -19,6 +19,7 @@ class PostController extends Controller
     {
         try {
             $post = Post::where('slug', $slug)->firstOrFail();
+            $post->incrementReadCount();
             return view('posts.show', compact('post'));
         } catch (ModelNotFoundException $e) {
             abort(404, 'Post not found');

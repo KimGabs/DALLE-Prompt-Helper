@@ -12,12 +12,12 @@
                 Search results for "{{ $search }}"
             @endif
         </div>
-        @foreach ($this->posts as $post)
+        @foreach ($this->myPosts as $post)
             <x-posts.post-item :post=$post />
         @endforeach
     </div>
 
     <div class="my-3">
-        {{ $this->posts->onEachSide(0)->links() }}
+        {{ $this->myPosts->onEachSide(0)->links() }}
     </div>
 </div>

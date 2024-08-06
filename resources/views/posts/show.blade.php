@@ -29,6 +29,13 @@
                         </div>
                     </div>
                 </div>
+                @if ( $post->title )
+                <div class="pb-5">
+                    <h1 class="text-xl font-bold">
+                        {{ $post->title }}
+                    </h1>
+                </div>
+                @endif
                 {{-- Prompt Container --}}
                 <div class="row-auto bg-white overflow-wrap break-word border border-gray-200 rounded-lg px-8 py-6 self-center">
                     {{-- The Prompt --}}
@@ -37,8 +44,8 @@
                     </div>
                     {{-- The Copy Button --}}
                     <div class="prompt-buttons mt-4 text-center">
-                        <button onclick="copyToClipboard()" class="text-white inline-flex items-center bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
-                            <svg class="w-6 h-6 text-gray-800 dark:text-white mr-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+                        <button onclick="copyToClipboard()" class="text-white font-black inline-flex items-center bg-slate-500  hover:bg-slate-600 focus:ring-4 focus:ring-transparent rounded-lg px-5 py-2.5 me-2 mb-2 focus:outline-none dark:focus:ring-blue-800">
+                            <svg class="w-6 h-6 dark:text-white mr-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
                                 <path fill-rule="evenodd" d="M18 3a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-1V9a4 4 0 0 0-4-4h-3a1.99 1.99 0 0 0-1 .267V5a2 2 0 0 1 2-2h7Z" clip-rule="evenodd"/>
                                 <path fill-rule="evenodd" d="M8 7.054V11H4.2a2 2 0 0 1 .281-.432l2.46-2.87A2 2 0 0 1 8 7.054ZM10 7v4a2 2 0 0 1-2 2H4v6a2 2 0 0 0 2 2h7a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3Z" clip-rule="evenodd"/>
                               </svg>                                                       
@@ -48,7 +55,7 @@
                 </div>
                 {{-- Image Dimenstion Container --}}
                 <div class="border border-gray-200 rounded-lg mt-5 text-left py-3 px-4 self-center">
-                    <h3 class="text-md text-gray-500 font-bold uppercase text-center">Image Dimension</h3>
+                    <h3 class="text-md mb-2 text-gray-500 font-bold uppercase text-center">Image Dimension</h3>
                     <div class="text-center">
                         <span class="inline-flex items-center text-center">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="size-5 mr-1">
@@ -61,7 +68,7 @@
 
                 {{-- Model Used Container--}}
                 <div class="border border-gray-200 rounded-lg mt-5 text-left py-3 px-4 self-center">
-                    <h3 class="text-md text-gray-500 font-bold uppercase text-center">Model Used</h3>
+                    <h3 class="text-md mb-2 text-gray-500 font-bold uppercase text-center">Model Used</h3>
                     <div class="text-center">
                         <span class="inline-flex items-center text-center">
                             🤖 {{ $post->ai_model }} 
@@ -71,7 +78,7 @@
                 </div>
                   {{-- Model Used Container--}}
                 <div class="border border-gray-200 rounded-lg mt-5 text-left py-3 px-4 self-center">
-                    <h3 class="text-md text-gray-500 font-bold uppercase text-center">Prompt Category</h3>
+                    <h3 class="text-md mb-2 text-gray-500 font-bold uppercase text-center">Prompt Category</h3>
                     <div class="text-center">
                         <span>{{ $post->category }} </span>
                     </div>

@@ -2,14 +2,14 @@
     <head>
     @livewireStyles
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-    <script src="{{ asset('../resources/js/components/helper.js') }}" defer></script>
+    {{-- <script src="{{ asset('../resources/js/components/helper.js') }}" defer></script> --}}
     </head>
     <main class="container mx-auto px-5 flex flex-grow">
-        <form action="{{ route('helper.create') }}" method="POST" enctype="multipart/form-data">
-        @csrf
-            <div class="w-full grid grid-cols-1 gap-6">
+        <div class="w-full grid grid-cols-1 gap-6">
+            <form action="{{ route('helper.create') }}" method="POST" enctype="multipart/form-data">
+                @csrf
                     @livewire('helper')
-        </form>
+            </form>
             <div class="flex">
                 <div class="flex-none">
                     <gradio-app src="https://mukaist-dalle-4k.hf.space"></gradio-app>
