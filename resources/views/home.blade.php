@@ -11,7 +11,7 @@
             </h1>
             {{-- <p class="text-gray-500 text-lg mt-1">Best Blog in the universe</p> --}}
             <a class="px-3 py-2 text-lg text-white bg-gray-800 rounded mt-5 inline-block"
-            href="http://127.0.0.1:8000/blog">Get Started</a>
+            href="{{ route('helper') }}">Get Started</a>
         </div>
         @include('components.search-bar')
     @endsection

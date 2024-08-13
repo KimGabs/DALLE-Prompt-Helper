@@ -21,18 +21,19 @@ namespace App\Http\Controllers;
                 return redirect('/login');
             }
             $parameters = Parameter::paginate(10); // 10 items per page
-            return view('parameters.index', compact('parameters'));
+            return view('admin.parameters.index', compact('parameters'));
         }    
 
         // Show the form for creating a new parameter
         public function create()
         {
-            return view('parameters.create');
+            return view('admin.parameters.create');
         }
 
 
         public function store(Request $request)
         {
+            // return redirect()->route('parameters.index')->with('success', Auth::id());
             // Validate and store a new parameter
             $incomingFields = $request->validate([
                 'name' => 'required|string|max:255|unique:parameters,name,',
@@ -41,7 +42,6 @@ namespace App\Http\Controllers;
                 'text_color' => 'nullable|string|max:7',
                 'custom' => 'nullable|boolean',
             ]);
-            
 
             $incomingFields['param_name'] = strip_tags($incomingFields['name']);
             $incomingFields['param_type'] = strip_tags($incomingFields['type']);
@@ -77,7 +77,7 @@ namespace App\Http\Controllers;
                 return redirect('/login');
             }
             // Show form for editing the parameter
-            return view('parameters.edit', compact('parameter'));
+            return view('admin.parameters.edit', compact('parameter'));
         }
     
         public function update(Request $request, Parameter $parameter)
@@ -86,7 +86,7 @@ namespace App\Http\Controllers;
             $request->validate([
                 'name' => 'required|string|max:255|unique:parameters,name,' . $parameter->id,
                 'type' => 'required',
-                'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+                'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048|dimensions:width=1024,height=1024',
                 'text_color' => 'nullable|string|max:7',
                 'custom' => 'nullable|boolean',
             ]);

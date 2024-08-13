@@ -3,6 +3,8 @@
 namespace App\Models;
 
 use App\Models\Role;
+use Illuminate\Support\Carbon;
+use Illuminate\Database\Eloquent\Builder;
 use Laravel\Sanctum\HasApiTokens;
 use Laravel\Jetstream\HasProfilePhoto;
 use Illuminate\Notifications\Notifiable;
@@ -28,6 +30,7 @@ class User extends Authenticatable implements MustVerifyEmail
         'name',
         'email',
         'password',
+        'role'
     ];
 
     public function roles() {
@@ -41,7 +44,18 @@ class User extends Authenticatable implements MustVerifyEmail
     public function hasRole($role) {
         return $this->roles()->where('name', $role)->exists();
     }
-    
+
+    public function getRoleName(){
+        return ucfirst($this->roles()->first()->name ?? 'No Role');
+    }
+
+    public function readableCreatedAt() {
+        return Carbon::parse($this->created_at)->format('F j, Y');
+    }
+
+    public function scopeCreatedAt(Builder $query) {
+        $query->where('created_at', '<=', Carbon::now());
+    }
 
     /**
      * The attributes that should be hidden for serialization.
@@ -89,3 +103,4 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasMany(Comment::class);
     }
 }
+

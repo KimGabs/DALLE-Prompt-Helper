@@ -1,4 +1,4 @@
-<div x-data="{ query: ' {{ request('search', '') }}' }" id="search-box">
+<div x-data="{ query: '{{ request('search', '') }}' }" id="search-box">
     <div class="flex justify-between item-center">
         {{-- <h3 class="text-lg font-semibold text-gray-900 mb-3">Search</h3> --}}
         <div class="w-80 flex rounded-2xl bg-gray-100 py-1 px-3 mb-2 items-center">
@@ -10,10 +10,8 @@
             </span>
             <input x-on:keydown.enter="$dispatch('search', { search : query })" x-model="query"
             class="w-80 ml-1 bg-transparent focus:outline-none focus:border-none focus:ring-0 outline-none border-none text-gray-800 placeholder:text-gray-400"
-            type="text" placeholder="Search prompt...">
+            type="text">
          </div>
-        <x-button class="mx-3 mb-2" x-on:click="$dispatch('search', {
-            search : query
-        })">Search</x-button>
+        <x-button class="mx-3 mb-2" x-on:click="$dispatch('search', {search : query})">Search</x-button>
     </div>
 </div>

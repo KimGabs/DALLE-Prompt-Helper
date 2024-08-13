@@ -62,13 +62,6 @@ class PostList extends Component
         ->paginate(4);
     }
 
-    // public function mount()
-    // {
-    //     if (!auth()->check()) {
-    //         redirect('/login')->send();
-    //     }
-    // }
-
     public function render()
     {
         return view('livewire.post-list');

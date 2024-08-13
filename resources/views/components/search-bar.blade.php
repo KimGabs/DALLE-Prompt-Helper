@@ -1,9 +1,10 @@
 {{-- Search bar --}}
 <div x-data="{ query: ' {{ request('search', '') }}' }" class='max-w-2xl mx-auto flex'>
-    <div class="relative flex items-center w-full h-12 rounded-lg bg-white overflow-hidden">
+    <div class="relative flex items-center w-full h-12 rounded-lg overflow-hidden">
         <input x-on:keydown.enter="$dispatch('search', { search : query })" x-model="query"
-        type="text" id="search" placeholder="Search prompt..." 
-        class="peer h-full w-full border-gray-200 rounded-lg focus:border-bluee-400"
+        type="text" id="search" 
+        {{-- placeholder="Search prompt..."  --}}
+        class="peer h-full w-full border-gray-200 rounded-lg focus:border-blue-400"
         /> 
     </div>
     <button x-on:click="$dispatch('search', {search : query})"
