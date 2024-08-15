@@ -61,6 +61,10 @@ class Post extends Model
         return Str::limit(strip_tags($this->body), 100);
     }
 
+    public function getExcerptShortTitle() {
+        return Str::limit(strip_tags($this->body), 40);
+    }
+
     public function readablePublished() {
         return Carbon::parse($this->published_at)->format('F j, Y');
     }

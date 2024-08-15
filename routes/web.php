@@ -5,33 +5,33 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\UserController;
+use App\Http\Middleware\AdminMiddleware;
 use App\Http\Controllers\HelperController;
 use App\Http\Controllers\ParameterController;
-use App\Http\Controllers\AdminDashboardController;
 
 
 Route::get('/', HomeController::class)->name('home');
 Route::get('/helper', [HelperController::class, 'index'])->name('helper');
 Route::post('/helper', [HelperController::class, 'create'])->name('helper.create');
 Route::get('posts/{slug}', [PostController::class, 'show'])->name('posts.show');
+Route::get('posts/edit/{slug}', [PostController::class, 'edit'])->name('post.edit');
+Route::put('posts/update/{post}', [PostController::class, 'update'])->name('post.update');
 
-// Route::get('/helper', [ParameterController::class, 'index'])->name('helper.helper');
-Route::resource('/admin/parameters', ParameterController::class);
-Route::resource('/admin/users', UserController::class);
-Route::get('/myprompts', [PostController::class, 'index'])->name('posts.index');
 
-// Route::get('/manage-users', HomeController::class)->name('manage-users');
+Route::get('/myprompts', [PostController::class, 'index'])->name('post.index');
 
-Route::get('/admin/dashboard', [AdminDashboardController::class, 'index'])->name('admin.dashboard');
 
-Route::middleware([
-    'auth:sanctum',
-    config('jetstream.auth_session'),
-    'verified',
+Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified',
 ])->group(function () {
-    // Route::get('/dashboard', function () {
-    //     return view('dashboard');
-    // })->name('dashboard');
+    // Verified users can visit.
+});
+
+Route::middleware([AdminMiddleware::class])->group(function () {
+    Route::get('/admin/dashboard', 'App\Http\Controllers\Admin\AdminDashboardController@index')->name('admin.dashboard');
+    Route::resource('/admin/parameters', 'App\Http\Controllers\Admin\ParameterController');
+    Route::resource('/admin/users', 'App\Http\Controllers\Admin\UserController');
+    Route::resource('/admin/posts', 'App\Http\Controllers\Admin\PostsController');
+    
 });
 
 

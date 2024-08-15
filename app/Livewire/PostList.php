@@ -9,7 +9,6 @@ use Livewire\Attributes\Url;
 use Livewire\WithPagination;
 use Livewire\Attributes\Computed;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Http\RedirectResponse;
 
 class PostList extends Component
 {
@@ -21,7 +20,14 @@ class PostList extends Component
     #[Url()]
     public $search = '';
 
-    public function setSort($sort) {
+    public $userId;
+
+    public function mount()
+    {
+        $this->userId = Auth::id();
+    }
+
+    public function setSortPost($sort) {
         $this->sort = ($sort === 'desc') ? 'desc' : 'asc';
         $this->resetPage();
     }
@@ -39,14 +45,19 @@ class PostList extends Component
 
     #[Computed()]
     public function myPosts() {
+        // return redirect()->route('parameters.index')->with('success', $this->userId);
+        if (!$this->userId) {
+            return redirect()->route('parameters.index')->with('success', $this->userId);
+            return collect(); // Return an empty collection or handle appropriately
+        }
+
         return Post::published()
-        ->orderBy('published_at', $this->sort)
+        ->where('user_id', $this->userId)
         ->where(function ($query) {
             $query->where('title', 'like', "%{$this->search}%")
-                  ->orWhere('body', 'like', "%{$this->search}%")
-                  ->orWhere('category', 'like', "%{$this->search}%");;
+                  ->orWhere('category', 'like', "%{$this->search}%");
         })
-        ->where('user_id', Auth::id())
+        ->orderBy('published_at', $this->sort)
         ->paginate(6);
     }
 

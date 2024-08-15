@@ -8,15 +8,17 @@
                 <x-nav-link href="{{ route('home') }}" :active="request()->routeIs('home')">
                     {{ __('Home') }}
                 </x-nav-link>
-                <x-nav-link href="{{ route('posts.index') }}" :active="request()->routeIs('posts.index')">
+                <x-nav-link href="{{ route('post.index') }}" :active="request()->routeIs('post.index')">
                     {{ __('My Prompts') }}
                 </x-nav-link>
                 <x-nav-link href="{{ route('helper') }}" :active="request()->routeIs('helper.index')">
                     {{ __('Helper') }}
                 </x-nav-link>
+                @if(auth()->user() && auth()->user()->hasRole('admin'))
                 <x-nav-link href="{{ route('admin.dashboard') }}" :active="request()->routeIs('admin.dashboard')">
                     {{ __('Admin Dashboard') }}
                 </x-nav-link>
+                @endif
             </ul>
         </div>
     </div>

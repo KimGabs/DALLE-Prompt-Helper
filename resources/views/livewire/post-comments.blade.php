@@ -14,12 +14,12 @@
     <div class="user-comments px-3 py-2 mt-5 user-comments">
         @forelse ($this->comments as $comment)
             <div class="comment [&:not(:last-child)]:border-b border-gray-100 py-5">
-                <div class="user-meta flex mb-4 text-sm items-center">
-                    <img class="w-7 h-7 rounded-full mr-3" src="{{ $comment->user->profile_photo_url }}" alt="mn">
+                <div class="user-meta flex mb-4 text-md items-center">
+                    <img class="w-10 h-10 rounded-full mr-3 object-cover" src="{{ $comment->user->profile_photo_url }}" alt="mn">
                     <span class="mr-1">{{ $comment->user->name }}</span>
                     <span class="text-gray-500">• {{ $comment->created_at->diffForHumans() }}</span>
                 </div>
-                <div class="text-justify text-gray-700  text-sm">
+                <div class="text-justify text-gray-700  text-md">
                     {{ $comment->comment }}
                 </div>
             </div>

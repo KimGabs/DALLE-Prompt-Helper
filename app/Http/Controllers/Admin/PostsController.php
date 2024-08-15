@@ -1,23 +1,18 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use App\Models\Post;
-use App\Models\User;
-use Illuminate\Support\Str;
 use Illuminate\Http\Request;
-use Livewire\WithFileUploads;
+use Illuminate\Validation\Rule;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Storage;
-use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Livewire\WithFileUploads;
+use Illuminate\Support\Str;
 
-
-class PostController extends Controller
+class PostsController extends Controller
 {
-    private function authorizePostUpdate(Post $post) 
-    {
-        return auth()->user()->id === $post->user_id;
-    }
+    use WithFileUploads;
 
     public function index() {
         if (!auth()->check()) {
@@ -26,25 +21,25 @@ class PostController extends Controller
 
         $posts = Post::paginate(10); // 10 items per page
 
-        return view('post.index', compact('posts'));
+        return view('admin.posts.index', compact('posts'));
     }
 
-    public function edit($id)
+    public function edit(Post $post)
     {
         if (!auth()->check()) {
             return redirect('/login');
         }
         
-        $post = Post::findOrFail($id);
-        // return view('post.edit', compact('post'));
         
         $categories = config('post.categories');
         $aiModels = config('ai_models.models');
-        return view('post.edit', compact('aiModels', 'categories', 'post'));
+        return view('admin.posts.edit-post', compact('aiModels', 'categories', 'post'));
     }
 
     public function update(Request $request, Post $post)
     {
+        
+        // return redirect()->route('parameters.index')->with('success', $request->role);
         // Validate and update the parameter
         $incomingFields = $request->validate([
             'body' => 'required|string',
@@ -123,27 +118,18 @@ class PostController extends Controller
 
         $post->update(array_filter($incomingFields));
 
-        return redirect()->route('post.index')->with('success', 'User updated successfully.');
+        return redirect()->route('posts.index')->with('success', 'User updated successfully.');
     }
 
-    public function show($identifier)
+    public function destroy(Post $post)
     {
-        try {
-            if (is_numeric($identifier)) {
-                $post = Post::findOrFail($identifier);
-            } else {
-                $post = Post::where('slug', $identifier)->firstOrFail();
+            if ($post->image) {
+                Storage::disk('public')->delete($post->image);
             }
-    
-            $post->incrementReadCount();
-            $authorPosts = $post->author->posts; // Retrieves all posts by the author
+
+            $post->delete();
         
-            return view('post.show', [
-                'post' => $post,
-                'authorPosts' => $authorPosts,
-            ]);
-        } catch (ModelNotFoundException $e) {
-            abort(404, 'Post not found');
-        }
+        // Delete the user
+        return redirect()->route('posts.index')->with('success', 'Post deleted successfully.');
     }
 }

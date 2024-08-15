@@ -68,7 +68,7 @@ class helperController extends Controller
         ]);
         
         // session()->flash('success', 'User Created Success!');
-        return redirect()->route('posts.index')->with('success', 'Post updated successfully.');
+        return redirect()->route('post.index')->with('success', 'Post updated successfully.');
 
         // return view('livewire.submit-modal');
     }

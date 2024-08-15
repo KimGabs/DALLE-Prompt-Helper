@@ -11,7 +11,7 @@ use Livewire\Attributes\Computed;
 class PostCard extends Component
 {
     public Post $post;
-    public $perPage = 20;
+    public $perPage = 16;
 
     #[Url()]
     public $sort = 'desc';
@@ -32,7 +32,8 @@ class PostCard extends Component
         ->where(function ($query) {
             $query->where('title', 'like', "%{$this->search}%")
                   ->orWhere('body', 'like', "%{$this->search}%")
-                  ->orWhere('category', 'like', "%{$this->search}%");
+                  ->orWhere('category', 'like', "%{$this->search}%")
+                  ->orWhere('ai_model', 'like', "%{$this->search}%");
         })->take($this->perPage)->get();
     }
 
@@ -40,6 +41,16 @@ class PostCard extends Component
     public function loadMore()
     {
         $this->perPage += 8;
+    }
+
+    public function placeholder()
+    {
+        return <<<'HTML'
+        <div>
+            <!-- Loading spinner... -->
+            <svg>...</svg>
+        </div>
+        HTML;
     }
 
     public function render()
