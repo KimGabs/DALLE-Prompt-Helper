@@ -9,19 +9,20 @@ The application offers a user-friendly GUI for ease of input, and guides the use
 ## Prerequisites
 
 Before we start, make sure you have the following installed:
-1. Laravel version 10 or later
-2. PHP version 8.1 or later
-3. XAMPP (Apache)
-4. Node.js (npm)
-5. Livewire 3
-6. 7zip (For windows)
-7. MailTrap
+1. PHP version 8.2 or later
+2. Laravel version 10 or later
+3. Composer ([Installation](https://getcomposer.org/download/))
+4. XAMPP (Apache) ([Download](https://www.apachefriends.org/download.html))
+5. Node.js - npm ([Intallation](https://nodejs.org/en/download/package-manager))
+6. Livewire 3 ([Installation](https://livewire.laravel.com/docs/installation))
+7. [7zip](https://www.7-zip.org/download.html)
+8. [MailTrap](https://mailtrap.io/home) (For email verificaition testing)
 
 ## Installation
 
 1. Unzip the downloaded archive
 2. Copy and paste DALLE-Prompt-Helper-Main folder in your projects folder. 
-3. In your terminal run composer install and npm install
+3. In your terminal run composer install and npm install. Ensure that the extension=intl is enabled in the php.ini
 4. Copy .env.backup to .env and updated the configurations (mainly the database configuration)
 5. In your terminal run php artisan key:generate
 6. Open phpmyadmin and create at database named “dalle_helper”
