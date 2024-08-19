@@ -22,13 +22,12 @@ Before we start, make sure you have the following installed:
 
 1. Unzip the downloaded archive
 2. Copy and paste DALLE-Prompt-Helper-Main folder in your projects folder. 
-3. In your terminal run composer install and npm install. Ensure that the extension=intl is enabled in the php.ini
-4. Copy .env.backup to .env and updated the configurations (mainly the database configuration)
-5. In your terminal run php artisan key:generate
-6. Open phpmyadmin and create at database named “dalle_helper”
-7. Import the database/seed/dalle_helper.sql into the created database (“dalle_helper”)
-8. Run php artisan storage:link to create the storage symlink
-9. Then finally launch the command php artisan serve.
+3. In your terminal run composer install and npm install
+4. In phpmyadmin, Create a database named “dalle_helper” and run php artisan db:seed --class=ImportDataSeeder to seed the records into the tables. Alternatively, you can import the database/seed/dalle_helper.sql into the created database (“dalle_helper”) 
+5. Copy .env.backup to .env and updated the configurations (mainly the database configuration)
+6. In your terminal run php artisan key:generate
+7. Run php artisan storage:link to create the storage symlink.
+8. Then finally launch the command php artisan serve.
 
 ## How to Use
 
