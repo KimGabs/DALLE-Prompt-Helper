@@ -1,14 +1,14 @@
 {{-- @props(['post']) --}}
 {{-- <article class="[&:not(:last-child)]:border-b border-gray-100 pb-10"> --}}
     {{-- <div class="article-body grid grid-cols-12 gap-3 mt-5 items-start"> --}}
-        <figure class="col-span-2 relative group overflow-hidden rounded-lg">
+        <figure class="relative group overflow-hidden rounded-lg">
             <a href="posts/{{ $post->slug }}">
                 <img
                   src="{{ asset('storage/' . $post->image) }}" 
                   alt="{{ $post->title }}"
                   class="w-full h-96 group transition-all duration-200 object-cover"/>
             </a>
-            <livewire:like-button :key="'like-button-'.$post->id.now()" :post="$post" :styleDiv="'styleDiv-a'" :styleButton="'styleButton-a'" :likeCount="'likeCount-listpost'" />
+            <livewire:like-button :key="'like-button-'.$post->id.now()" :post="$post" :styleDiv="'styleDiv-a'" :styleButton="'styleButton-a dark:bg-gray-800 dark:hover:bg-gray-800'" :likeCount="'likeCount-listpost'" />
             <figcaption
               class="flex w-full p-3 absolute -bottom-20 left-0 bg-gradient-to-t from-gray-800 text-white items-center invisible group-hover:bottom-0 group-hover:visible transition-all duration-300">
               <div class="w-full flex flex-col gap-2">

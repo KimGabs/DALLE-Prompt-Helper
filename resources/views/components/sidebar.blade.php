@@ -1,16 +1,4 @@
-<aside class="absolute left-0 top-0 flex h-screen w-64 flex-col overflow-y-hidden duration-300 ease-linear border-r-2 dark:bg-boxdark lg:static lg:translate-x-0">
-    <div class="flex items-center justify-between gap-2 px-6 py-5.5 lg:py-6.5">
-        <button
-          class="block lg:hidden"
-        >
-          <svg class="fill-current" width="20" height="18" viewBox="0 0 20 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path
-              d="M19 8.175H2.98748L9.36248 1.6875C9.69998 1.35 9.69998 0.825 9.36248 0.4875C9.02498 0.15 8.49998 0.15 8.16248 0.4875L0.399976 8.3625C0.0624756 8.7 0.0624756 9.225 0.399976 9.5625L8.16248 17.4375C8.31248 17.5875 8.53748 17.7 8.76248 17.7C8.98748 17.7 9.17498 17.625 9.36248 17.475C9.69998 17.1375 9.69998 16.6125 9.36248 16.275L3.02498 9.8625H19C19.45 9.8625 19.825 9.4875 19.825 9.0375C19.825 8.55 19.45 8.175 19 8.175Z"
-              fill=""
-            />
-          </svg>
-        </button>
-      </div>
+<aside class="hidden md:block left-0 top-0 flex h-screen w-64 flex-col overflow-y-hidden duration-300 ease-linear border-r-2 dark:bg-boxdark lg:static lg:translate-x-0">
       <!-- SIDEBAR HEADER -->
     
       <div
@@ -26,7 +14,7 @@
               <!-- Menu Item Dashboard -->
               <li>
                 {{-- Dashboard --}}
-                <a class="group relative flex items-center gap-2.5 rounded-md px-4 py-2 font-medium hover:text-orange-500 duration-300 ease-in-out hover:bg-gray-200 dark:hover:bg-meta-4 "
+                <a class="group relative flex items-center gap-2.5 rounded-md px-4 py-2 font-medium hover:text-orange-600 duration-300 ease-in-out hover:bg-gray-200 dark:hover:bg-meta-4 "
                   href="{{ route('admin.dashboard') }}">
                   <svg class="fill-current" width="20" height="20" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M6.10322 0.956299H2.53135C1.5751 0.956299 0.787598 1.7438 0.787598 2.70005V6.27192C0.787598 7.22817 1.5751 8.01567 2.53135 8.01567H6.10322C7.05947 8.01567 7.84697 7.22817 7.84697 6.27192V2.72817C7.8751 1.7438 7.0876 0.956299 6.10322 0.956299ZM6.60947 6.30005C6.60947 6.5813 6.38447 6.8063 6.10322 6.8063H2.53135C2.2501 6.8063 2.0251 6.5813 2.0251 6.30005V2.72817C2.0251 2.44692 2.2501 2.22192 2.53135 2.22192H6.10322C6.38447 2.22192 6.60947 2.44692 6.60947 2.72817V6.30005Z"
@@ -42,7 +30,7 @@
                 </a>
 
                 {{-- Users --}}
-                <a class="group relative flex items-center gap-2.5 rounded-md px-4 py-2 font-medium hover:text-orange-500 duration-300 ease-in-out hover:bg-gray-200 dark:hover:bg-meta-4 "
+                <a class="group relative flex items-center gap-2.5 rounded-md px-4 py-2 font-medium hover: duration-300 ease-in-out hover:bg-gray-200 dark:hover:bg-meta-4 "
                 href="{{ route('users.index') }}">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="size-5">
                         <path d="M10 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6ZM3.465 14.493a1.23 1.23 0 0 0 .41 1.412A9.957 9.957 0 0 0 10 18c2.31 0 4.438-.784 6.131-2.1.43-.333.604-.903.408-1.41a7.002 7.002 0 0 0-13.074.003Z" />
@@ -50,7 +38,7 @@
                     Users
                 </a>
 
-                <a class="group relative flex items-center gap-2.5 rounded-md px-4 py-2 font-medium hover:text-orange-500 duration-300 ease-in-out hover:bg-gray-200 dark:hover:bg-meta-4 "
+                <a class="group relative flex items-center gap-2.5 rounded-md px-4 py-2 font-medium hover:text-orange-600 duration-300 ease-in-out hover:bg-gray-200 dark:hover:bg-meta-4 "
                 href="{{ route('posts.index') }}">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="size-5">
                         <path fill-rule="evenodd" d="M9.493 2.852a.75.75 0 0 0-1.486-.204L7.545 6H4.198a.75.75 0 0 0 0 1.5h3.14l-.69 5H3.302a.75.75 0 0 0 0 1.5h3.14l-.435 3.148a.75.75 0 0 0 1.486.204L7.955 14h2.986l-.434 3.148a.75.75 0 0 0 1.486.204L12.456 14h3.346a.75.75 0 0 0 0-1.5h-3.14l.69-5h3.346a.75.75 0 0 0 0-1.5h-3.14l.435-3.148a.75.75 0 0 0-1.486-.204L12.045 6H9.059l.434-3.148ZM8.852 7.5l-.69 5h2.986l.69-5H8.852Z" clip-rule="evenodd" />
@@ -58,7 +46,7 @@
                     Posts
                 </a>
 
-                <a class="group relative flex items-center gap-2.5 rounded-md px-4 py-2 font-medium hover:text-orange-500 duration-300 ease-in-out hover:bg-gray-200 dark:hover:bg-meta-4 "
+                <a class="group relative flex items-center gap-2.5 rounded-md px-4 py-2 font-medium hover:text-orange-600 duration-300 ease-in-out hover:bg-gray-200 dark:hover:bg-meta-4 "
                     href="{{ route('parameters.index') }}">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="size-5">
                         <path d="M10 3.75a2 2 0 1 0-4 0 2 2 0 0 0 4 0ZM17.25 4.5a.75.75 0 0 0 0-1.5h-5.5a.75.75 0 0 0 0 1.5h5.5ZM5 3.75a.75.75 0 0 1-.75.75h-1.5a.75.75 0 0 1 0-1.5h1.5a.75.75 0 0 1 .75.75ZM4.25 17a.75.75 0 0 0 0-1.5h-1.5a.75.75 0 0 0 0 1.5h1.5ZM17.25 17a.75.75 0 0 0 0-1.5h-5.5a.75.75 0 0 0 0 1.5h5.5ZM9 10a.75.75 0 0 1-.75.75h-5.5a.75.75 0 0 1 0-1.5h5.5A.75.75 0 0 1 9 10ZM17.25 10.75a.75.75 0 0 0 0-1.5h-1.5a.75.75 0 0 0 0 1.5h1.5ZM14 10a2 2 0 1 0-4 0 2 2 0 0 0 4 0ZM10 16.25a2 2 0 1 0-4 0 2 2 0 0 0 4 0Z" />

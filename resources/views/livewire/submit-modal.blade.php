@@ -1,9 +1,9 @@
     {{-- Modal Container  --}}
     <div x-show="showSubmitModal" class="fixed z-10 inset-0 overflow-y-auto" aria-labelledby="modal-title" role="dialog" aria-modal="true" style="display: none">
-        <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+        <div class="flex items-end justify-center min-h-screen pt-0 sm:pt-4 px-0 sm:px-4 pb-0 sm:pb-20 text-center sm:block sm:p-0">
             <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" aria-hidden="true"></div>
             
-            <div class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-5xl sm:w-full">
+            <div class="inline-block align-bottom bg-white sm:rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-5xl sm:w-full">
 
                 {{-- Modal Header --}}
                 <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600">
@@ -21,24 +21,24 @@
                 {{-- Content --}}
                 <div>
                     <div class="flex flex-col justify-center bg-gray-200">
-                        <div class="flex p-5">
+                        <div class="flex flex-col md:flex-row p-2 md:p-5">
                             <div class="content-center px-4">
-                                <div class="flex mb-4 w-full max-w-sm h-64 bg-gray-200">
+                                <div class="flex mb-4 w-full max-w h-80 bg-gray-200 mt-3 md:mt-0">
                                     @if($image)
-                                        <img src="{{ $image->temporaryUrl() }}" alt="" class="rounded-lg object-contain w-full h-full" >
+                                        <img src="{{ $image->temporaryUrl() }}" alt="" class="rounded-lg object-contain w-full h-lg" >
                                     @else
-                                        <img src="../public/storage/others/image-placeholder.png" alt="image placeholder" class="object-cover w-full h-full">
+                                        <img src="../public/storage/others/image-placeholder.png" alt="image placeholder" class="object-contain w-full h-full">
                                     @endif
                                 </div>
                                 <input wire:model='image' accept="image/png, image/jpeg, image/jpg" type="file" id="image" name="image" class="w-full ring-1 ring-inset ring-gray-300 bg-gray-300 text-sm rounded block p-2"/>
                             </div>
-                            <div class="flex flex-col flex-auto gap-4">
+                            <div class="flex flex-col flex-auto gap-4 py-4">
                                 <div class="flex-auto">
                                     <label for="previewPrompt" class="block font-medium text-gray-900 dark:text-white">Prompt</label>
                                     <textarea required name="previewPrompt" type="text" id="finalPrompt" rows="5" class="block resize-none w-full p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 text-md focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" readonly required>
                                     </textarea>
                                 </div>
-                                <div class="flex flex-row flex-auto gap-4">
+                                <div class="flex flex-col flex-auto gap-4 sm:flex-col lg:flex-row">
                                     <div class="flex-1">
                                         <label for="ai_model" class="block font-medium text-gray-900 dark:text-white">Model Used</label>
                                         <select name="ai_model" id="aiModel" onchange="updateVersions()" class="bg-gray-50 border border-gray-300 text-gray-900 text-md rounded-lg focus:ring-blue-500 focus:border-blue-500 w-full px-2 py-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 mt-2" required>
@@ -87,7 +87,7 @@
                                         </script>
                                     </div>
                                 </div>
-                                <div class="flex flex-auto gap-4">
+                                <div class="flex flex-col flex-auto gap-4 sm:flex-col lg:flex-row">
                                     <div class="flex-auto">
                                         <label for="title" class="block font-medium text-gray-900 dark:text-white">Title (Optional)</label>
                                         <input type="text" id="title" name="title" class="bg-gray-50 border border-gray-300 text-gray-900 text-md rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 mt-2"/>

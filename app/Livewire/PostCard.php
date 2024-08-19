@@ -11,7 +11,7 @@ use Livewire\Attributes\Computed;
 class PostCard extends Component
 {
     public Post $post;
-    public $perPage = 16;
+    public $perPage = 18;
 
     #[Url()]
     public $sort = 'desc';

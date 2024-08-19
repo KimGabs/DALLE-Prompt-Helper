@@ -1,4 +1,4 @@
-<div class="flex space-x-5">
+<div class="flex space-x-5 hidden md:block">
     <x-nav-link 
         href="{{ route('login') }}" :active="request()->routeIs('login')">
         Login

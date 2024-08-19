@@ -1,6 +1,6 @@
 <x-app-layout>
     <div class="flex w-full min-h-screen overflow-hidden">
-        <div class="w-full flex flex-col p-5">
+        <div class="w-full flex flex-col py-5">
             @if ($errors->any())
                 <div class="w-full pb-6">
                     <ul>
@@ -13,8 +13,8 @@
             <form action="{{ route('post.update', $post->id) }}" method="POST" enctype="multipart/form-data">            
                 @csrf
                 @method('PUT')
-            <div class="flex flex-col justify-center bg-gray-200 rounded-lg">
-                <div class="flex">
+            <div class="flex flex-col justify-center bg-gray-200 rounded-lg p-1">
+                <div class="flex flex-col md:flex-row">
                     @livewire('update-image', ['post' => $post])
                     <div class="flex flex-col flex-auto gap-4 p-4">
                         <div class="flex-auto">
@@ -24,7 +24,7 @@
                             focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 
                             dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>{{ $post->body }}</textarea>
                         </div>
-                        <div class="flex flex-row flex-auto gap-4">
+                        <div class="flex flex-col flex-auto gap-4 md:flex-col lg:flex-row">
                             <div class="flex-1">
                                 <label for="ai_model" class="block font-medium text-gray-900 dark:text-white">Model Used: <span class="text-orange-600">{{ $post->ai_model }}</span></label>
                                 <select name="ai_model" id="aiModel" onchange="updateVersions()" class="bg-gray-50 border border-gray-300 text-gray-900 text-md rounded-lg focus:ring-blue-500 focus:border-blue-500 w-full px-2 py-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 mt-2">
@@ -90,15 +90,10 @@
                                 </select>
                             </div>
                         </div>
-                        <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Submit</button>
+                        <button type="submit" class="text-orange-400 bg-slate-800 hover:bg-slate-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Submit</button>
                     </div>
                 </div>
             </div>
-            <input name="oldImage" type="text" value="{{ $post->image }}" class="hidden"></input>
-            <input name="oldModel" type="text" value="{{ $post->ai_model }}" class="hidden"></input>
-            <input name="oldVersion" type="text" value="{{ $post->version }}" class="hidden"></input>
-            <input name="oldWidth" type="text" value="{{ $post->width }}" class="hidden"></input>
-            <input name="oldHeight" type="text" value="{{ $post->height }}" class="hidden"></input>
             </form>
             <div class="py-6">
                 <a href="../{{ $post->slug }}">Go Back</a>

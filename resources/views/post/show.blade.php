@@ -2,15 +2,15 @@
 <x-app-layout>
     <div class="w-full min-h-screen">
       <div class="container mx-auto px-4 py-10">
-        <div class="grid grid-rows-1 grid-flow-col gap-6">
+        <div class="grid sm:grid-cols-1 grid-flow-row md:grid-cols-2 lg:grid-cols-2 gap-6">
             @if(session('success'))
                 <p class="text-green-700 pb-6">{{ session('success') }}</p>
             @endif
             {{-- Left Part --}}
-            <div class="col-span-2 w-full px-5">
+            <div class="col-2 w-full px-2">
                 <img src="{{ asset('storage/' . $post->image) }}" alt="{{ $post->title }}" class="w-full h-auto object-cover rounded-sm">
                 <livewire:post-comments :key="'comments' . $post->id" :$post />
-            </div>
+            </div>  
             {{-- Right Part --}}
             <div class="col-2 grid-cols-1 w-full">
                 {{-- Author Profile --}}
@@ -20,8 +20,8 @@
                             <a href="#">
                                 <img src="{{ $post->author->profile_photo_url }}" class="h-10 rounded-full" alt="Profile of {{ $post->author->name }}">
                             </a>
-                            <div class="inline-flex ml-2">
-                                <a href="#">
+                            <div class="inline-flex ml-2 dark:text-white">
+                                <a href="#" class="font-medium hover:text-orange-600">
                                     <span>{{ $post->author->name }}</span>
                                 </a>
                                 <div class="ml-1">
@@ -34,7 +34,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="inline-flex items-center">
+                        <div class="inline-flex items-center dark:text-white">
                             <div class="inline-flex items-center">
                                 <span class="text-md inline-flex items-center text-center font-mono">
                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="size-5 mx-1">
@@ -55,20 +55,20 @@
                 </div>
                 @if ( $post->title )
                 <div class="pb-5">
-                    <h1 class="text-xl font-bold">
+                    <h1 class="text-xl font-bold dark:text-white">
                         {{ $post->title }}
                     </h1>
                 </div>
                 @endif
                 {{-- Prompt Container --}}
-                <div class="row-auto bg-white overflow-wrap break-word border border-gray-200 rounded-lg px-8 py-6 self-center">
+                <div class="row-auto bg-white overflow-wrap break-word border border-gray-200 rounded-lg px-8 py-6 self-center dark:bg-gray-700 dark:text-white dark:border-gray-800">
                     {{-- The Prompt --}}
                     <div class="prompt">
                         <b id="postBody">{{ $post->body }}</b>
                     </div>
                     {{-- The Copy Button --}}
                     <div class="prompt-buttons mt-4 text-center">
-                        <button onclick="copyToClipboard()" class="text-white font-black inline-flex items-center bg-orange-500  hover:bg-orange-600 focus:ring-4 focus:ring-transparent rounded-lg px-5 py-2.5 me-2 mb-2 focus:outline-none dark:focus:ring-blue-800">
+                        <button onclick="copyToClipboard()" class="text-white font-black inline-flex items-center bg-orange-600  hover:bg-orange-700 focus:ring-4 focus:ring-transparent rounded-lg px-5 py-2.5 me-2 mb-2 focus:outline-none dark:focus:ring-blue-800">
                             <svg class="w-6 h-6 dark:text-white mr-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
                                 <path fill-rule="evenodd" d="M18 3a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-1V9a4 4 0 0 0-4-4h-3a1.99 1.99 0 0 0-1 .267V5a2 2 0 0 1 2-2h7Z" clip-rule="evenodd"/>
                                 <path fill-rule="evenodd" d="M8 7.054V11H4.2a2 2 0 0 1 .281-.432l2.46-2.87A2 2 0 0 1 8 7.054ZM10 7v4a2 2 0 0 1-2 2H4v6a2 2 0 0 0 2 2h7a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3Z" clip-rule="evenodd"/>
@@ -77,7 +77,7 @@
                         </button>
                         @if(auth()->check() && auth()->user()->id === $post->user_id)
                             <a href="{{ route('post.edit', $post->id) }}">
-                                <button class="text-white font-black inline-flex items-center bg-orange-500  hover:bg-orange-600 focus:ring-4 focus:ring-transparent rounded-lg px-5 py-2.5 me-2 mb-2 focus:outline-none dark:focus:ring-blue-800">
+                                <button class="text-white font-black inline-flex items-center bg-orange-600  hover:bg-orange-700 focus:ring-4 focus:ring-transparent rounded-lg px-5 py-2.5 me-2 mb-2 focus:outline-none dark:focus:ring-blue-800">
                                     <svg class="w-6 h-6 dark:text-white mr-1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
                                         <path d="m5.433 13.917 1.262-3.155A4 4 0 0 1 7.58 9.42l6.92-6.918a2.121 2.121 0 0 1 3 3l-6.92 6.918c-.383.383-.84.685-1.343.886l-3.154 1.262a.5.5 0 0 1-.65-.65Z" />
                                         <path d="M3.5 5.75c0-.69.56-1.25 1.25-1.25H10A.75.75 0 0 0 10 3H4.75A2.75 2.75 0 0 0 2 5.75v9.5A2.75 2.75 0 0 0 4.75 18h9.5A2.75 2.75 0 0 0 17 15.25V10a.75.75 0 0 0-1.5 0v5.25c0 .69-.56 1.25-1.25 1.25h-9.5c-.69 0-1.25-.56-1.25-1.25v-9.5Z" />
@@ -89,7 +89,7 @@
                     </div>
                 </div>
                 {{-- Image Dimenstion Container --}}
-                <div class="border border-gray-200 rounded-lg mt-5 text-left py-3 px-4 self-center">
+                <div class="bg-white border border-gray-200 rounded-lg mt-5 text-left py-3 px-4 self-center dark:bg-gray-700 dark:text-white dark:border-gray-800">
                     <h3 class="text-md mb-2 text-gray-500 font-bold uppercase text-center">Image Dimension</h3>
                     <div class="text-center">
                         <span class="inline-flex items-center text-center">
@@ -102,25 +102,25 @@
                 </div>
 
                 {{-- Model Used Container--}}
-                <div class="border border-gray-200 rounded-lg mt-5 text-left py-3 px-4 self-center">
+                <div class="bg-white border border-gray-200 rounded-lg mt-5 text-left py-3 px-4 self-center dark:bg-gray-700 dark:text-white dark:border-gray-800">
                     <h3 class="text-md mb-2 text-gray-500 font-bold uppercase text-center">Model Used</h3>
                     <div class="text-center">
                         <span class="inline-flex items-center text-center">
                             🤖 {{ $post->ai_model }} 
                         </span>
-                        <span class="text-gray-800">{{ $post->version }}</span>
+                        <span class="text-gray-800 dark:text-white">{{ $post->version }}</span>
                     </div>
                 </div>
-                  {{-- Prompt Container--}}
-                <div class="border border-gray-200 rounded-lg mt-5 text-left py-3 px-4 self-center">
+                  {{-- Category Container--}}
+                <div class="bg-white border border-gray-200 rounded-lg mt-5 text-left py-3 px-4 self-center dark:bg-gray-700 dark:text-white dark:border-gray-800">
                     <h3 class="text-md mb-2 text-gray-500 font-bold uppercase text-center">Prompt Category</h3>
                     <div class="text-center">
                         <span>{{ $post->category }} </span>
                     </div>
                 </div>
 
-                  {{-- Prompt Container--}}
-                  <div class="border border-gray-200 rounded-lg mt-5 text-left py-3 px-4 self-center">
+                  {{-- Collection Container--}}
+                  <div class="bg-white border border-gray-200 rounded-lg mt-5 text-left py-3 px-4 self-center dark:bg-gray-700 dark:text-white dark:border-gray-800">
                     <h3 class="text-md mb-2 text-gray-500 font-bold uppercase text-center">Author's Collection</h3>
                         @if($authorPosts->count())
                         <div class="grid grid-cols-3 gap-0">

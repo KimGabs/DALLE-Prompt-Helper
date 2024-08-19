@@ -11,7 +11,7 @@ use App\Http\Controllers\ParameterController;
 
 
 Route::get('/', HomeController::class)->name('home');
-Route::get('/helper', [HelperController::class, 'index'])->name('helper');
+Route::get('/helper', [HelperController::class, 'index'])->name('helper.index');
 Route::post('/helper', [HelperController::class, 'create'])->name('helper.create');
 Route::get('posts/{slug}', [PostController::class, 'show'])->name('posts.show');
 Route::get('posts/edit/{slug}', [PostController::class, 'edit'])->name('post.edit');

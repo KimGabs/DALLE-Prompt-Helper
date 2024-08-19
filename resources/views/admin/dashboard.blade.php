@@ -3,16 +3,16 @@
         <x-sidebar />
         <div class="w-full p-5">
             <h1 class="font-bold text-2xl">Dashboard</h1> 
-            <div class="grid grid-cols-2 gap-5 py-5">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-5 py-5">
                 <div class="inline-flex flex border shadow-md rounded-lg w-auto px-4 py-5 items-center">
                     <img class="size-10 rounded-full object-cover mr-4" src="{{ Auth::user()->profile_photo_url }}" alt="{{ Auth::user()->name }}" />
-                    <div class="justify-between w-full inline-flex">
-                        <b>Welcome <br> <span class="text-sm text-gray-600">{{ Auth::user()->name }}</span></b>
+                    <div class="justify-between w-full flex flex-wrap inline-flex">
+                        <b class="mb-2">Welcome <br> <span class="text-sm text-gray-600">{{ Auth::user()->name }}</span></b>
                         <form method="POST" action="{{ route('logout') }}" x-data>
                             @csrf
                             <button href="{{ route('logout') }}"
                             @click.prevent="$root.submit();"
-                            class="inline-flex flex text-center items-center justify-between gap-1 border border-gray-300 rounded-lg px-5 py-2.5 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 ">
+                            class="inline-flex flex text-center items-center justify-between gap-1 border border-gray-300 rounded-lg px-5 py-2.5 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-100">
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="size-4">
                                     <path fill-rule="evenodd" d="M3 4.25A2.25 2.25 0 0 1 5.25 2h5.5A2.25 2.25 0 0 1 13 4.25v2a.75.75 0 0 1-1.5 0v-2a.75.75 0 0 0-.75-.75h-5.5a.75.75 0 0 0-.75.75v11.5c0 .414.336.75.75.75h5.5a.75.75 0 0 0 .75-.75v-2a.75.75 0 0 1 1.5 0v2A2.25 2.25 0 0 1 10.75 18h-5.5A2.25 2.25 0 0 1 3 15.75V4.25Z" clip-rule="evenodd" />
                                     <path fill-rule="evenodd" d="M19 10a.75.75 0 0 0-.75-.75H8.704l1.048-.943a.75.75 0 1 0-1.004-1.114l-2.5 2.25a.75.75 0 0 0 0 1.114l2.5 2.25a.75.75 0 1 0 1.004-1.114l-1.048-.943h9.546A.75.75 0 0 0 19 10Z" clip-rule="evenodd" />

@@ -55,13 +55,13 @@
                 </th>
                 <th scope="row" class="px-7 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                     @if ($post->title)
-                    <a href="../posts/{{ $post->slug }}" class="hover:text-orange-500">
+                    <a href="../posts/{{ $post->slug }}" class="hover:text-orange-600">
                         {{ $post->title }}
                     </a>
                     @else
                         {{-- Post Prompt if no title  --}}
                         <span class="text-gray-500">
-                            <a href="../posts/{{ $post->slug }}" class="hover:text-orange-500">
+                            <a href="../posts/{{ $post->slug }}" class="hover:text-orange-600">
                                 Prompt: {{ $post->getExcerptShortTitle() }} 
                             </a>
                         </span>

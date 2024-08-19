@@ -12,11 +12,14 @@
         <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />      
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
-
+        <script src="https://cdn.tailwindcss.com"></script>
         <!-- Styles -->
         @livewireStyles
+        {{-- <link rel="stylesheet" href="resources/css/app.css"> --}}
+        {{-- <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"> --}}
+        
     </head>
-    <body class="font-sans antialiased">
+    <body class="font-sans antialiased dark:bg-zinc-900">
         <x-banner />
 
         @include('layouts.partials.header')

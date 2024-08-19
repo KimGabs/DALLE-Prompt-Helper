@@ -1,8 +1,6 @@
 <x-app-layout>
     <head>
-    @livewireStyles
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-    {{-- <script src="{{ asset('../resources/js/components/helper.js') }}" defer></script> --}}
+    {{-- @livewireStyles --}}
     </head>
     <main class="container mx-auto px-5 flex flex-grow">
         <div class="w-full grid grid-cols-1 gap-6">
@@ -10,11 +8,11 @@
                 @csrf
                     @livewire('helper')
             </form>
-            <div class="flex">
+            <div class="flex flex-col md:flex-row">
                 <div class="flex-none">
                     <gradio-app src="https://mukaist-dalle-4k.hf.space"></gradio-app>
                 </div>
-                <div class="flex-auto my-5 ml-5 rounded-lg p-6 border border-gray-200 shadow-md h-fit">
+                <div class="flex-auto  my-5 ml-5 rounded-lg p-6 border border-gray-200 shadow-md h-fit">
                     <h3 class="text-3xl font-bold dark:text-white">How to use the DALL•E prompt Helper</h3>
                     <p class="my-3 text-gray-500 dark:text-gray-400">
                         DALL•E 3 is a state-of-the-art image generation AI model created by OpenAI that can create stunning visuals from textual descriptions. However, with its vast array of parameters and styling options, it can be quite a challenge to remember everything. This prompt helper is your go-to guide for crafting the perfect prompts for DALL•E 3.
@@ -38,6 +36,5 @@
     </main>
     <script
         type="module"
-        src="https://gradio.s3-us-west-2.amazonaws.com/4.32.2/gradio.js"
-    ></script>
+        src="https://gradio.s3-us-west-2.amazonaws.com/4.32.2/gradio.js"></script>
 </x-app-layout>

@@ -1,5 +1,5 @@
 <div x-data="{ showModal: false }" x-init="showModal = false">
-    <button type="button" class="bg-blue-500 text-white px-6 py-2 rounded" @click="showModal = true">{{ ucfirst($type) }}</button>
+    <button type="button" class="bg-blue-500 text-white p-3 rounded w-full" @click="showModal = true">{{ ucfirst($type) }}</button>
     {{-- <textarea id="" class="">{{ implode(', ', $parameters->whereIn('id', $selectedParameters)->pluck('name')->toArray()) }}</textarea> --}}
 
     <div x-show="showModal" class="fixed z-10 inset-0 overflow-y-auto" aria-labelledby="modal-title" role="dialog" aria-modal="true" style="display: none">

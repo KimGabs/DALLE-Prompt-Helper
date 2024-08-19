@@ -31,7 +31,7 @@
 }
 
 .likeCount-listpost {
-    display: none;
+    display: none!important;
 }
 
 .likeCount-post {

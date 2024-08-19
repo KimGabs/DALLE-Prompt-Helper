@@ -1,9 +1,9 @@
 {{-- Settings Dropdown --}}
-<div class="ms-3 relative">
+<div class="ms-3 relative hidden md:block">
     <x-dropdown align="right" width="48">
         <x-slot name="trigger">
             @if (Laravel\Jetstream\Jetstream::managesProfilePhotos())
-                <button class="flex text-sm border-2 border-transparent rounded-full focus:outline-none focus:border-gray-300 transition">
+                <button class="flex text-sm border-2 border-gray-200 rounded-full focus:outline-none focus:border-orange-500 transition">
                     <img class="h-8 w-8 rounded-full object-cover" src="{{ Auth::user()->profile_photo_url }}" alt="{{ Auth::user()->name }}" />
                 </button>
             @else
@@ -21,12 +21,12 @@
 
         <x-slot name="content">
             <!-- Account Management -->
-            <div class="block px-4 py-2 text-xs text-gray-400">
-                {{ __('Manage Account') }}
+            <div class="block px-4 py-2 text-md text-gray-400">
+                {{ __( Auth::user()->name ) }}
             </div>
 
             <x-dropdown-link wire:navigate href="{{ route('profile.show') }}">
-                {{ __('Profile') }}
+                {{ __('Manage Account') }}
             </x-dropdown-link>
 
             @if (Laravel\Jetstream\Jetstream::hasApiFeatures())

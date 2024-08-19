@@ -8,6 +8,7 @@ use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Livewire\WithFileUploads;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 
@@ -16,11 +17,12 @@ class PostController extends Controller
 {
     private function authorizePostUpdate(Post $post) 
     {
-        return auth()->user()->id === $post->user_id;
+        return Auth::user()->id === $post->user_id;
     }
 
+
     public function index() {
-        if (!auth()->check()) {
+        if (!Auth::check()) {
             return redirect('/login');
         }
 
@@ -31,7 +33,7 @@ class PostController extends Controller
 
     public function edit($id)
     {
-        if (!auth()->check()) {
+        if (!Auth::check()) {
             return redirect('/login');
         }
         
@@ -49,13 +51,8 @@ class PostController extends Controller
         $incomingFields = $request->validate([
             'body' => 'required|string',
             'newImage' => 'nullable|image|mimes:jpeg,png,jpg|max:4096',
-            'oldImage' => 'required|string',
             'title' => 'nullable|string',
             'post_category' => 'required|string',
-            'oldModel' => 'nullable|string|max:255',
-            'oldVersion' => 'nullable|string|max:255',
-            'oldWidth' => 'nullable|string|max:255',
-            'oldHeight' => 'nullable|string|max:255',
             'ai_model' => 'nullable|string|max:255',
             'version' => 'nullable|string|max:255',], [
                 'version.required' => 'The version field is required when the AI model is provided.',

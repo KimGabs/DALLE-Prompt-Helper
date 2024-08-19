@@ -1,14 +1,13 @@
 @props(['post'])
-<figure class="relative group overflow-hidden rounded-lg">
+<figure class="relative group overflow-hidden rounded-sm">
     <a href="posts/{{ $post->slug }}">
         <img
         src="{{ asset('storage/' . $post->image) }}" 
-        {{-- src="{{ $post->image }}"  --}}
         alt="{{ $post->title }}"
         class="group transition-all duration-200 object-cover ease-in"
         />
     </a>
-    <livewire:like-button :key="'like-button-'.$post->id.now()" :post="$post" :styleDiv="'styleDiv-a'" :styleButton="'styleButton-a'" :likeCount="'likeCount-listpost'" />
+    <livewire:like-button :key="'like-button-'.$post->id.now()" :post="$post" :styleDiv="'styleDiv-a'" :styleButton="'styleButton-a dark:bg-gray-800 dark:hover:bg-gray-800'" :likeCount="'likeCount-listpost'" />
     <figcaption
         class="flex w-full p-3 absolute -bottom-20 left-0 bg-gradient-to-t from-gray-800 text-white items-center invisible group-hover:bottom-0 group-hover:visible transition-all duration-300">
         <div class="w-full flex flex-col gap-2">
