@@ -25,11 +25,11 @@ Before we start, make sure you have the following installed:
 3. In your terminal, run the command - composer install.
 4. Rename env file from “env” to “.env”
 5. In terminal, run php artisan key:generate and php artisan storage:link
-6. Additionally, run the command npm audit fix and npm install
+6. Run npm audit fix and npm install
 7. In phpmyadmin, Create a database named “dalle_helper”.
 8. Start the Apache and MySQL service in the XAMPP Control Panel.
 9. In terminal, run php artisan db:seed --class=ImportDataSeeder to seed the records into the tables. 
-10. In your terminal run php artisan key:generate
+10. Run php artisan key:generate
 11. Run php artisan storage:link to create the storage symlink.
 12. Then finally launch the command php artisan serve and npm run dev in separate.
 
