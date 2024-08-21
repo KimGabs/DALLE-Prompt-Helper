@@ -58,7 +58,7 @@ class Post extends Model
     }
 
     public function getExcerptTitle() {
-        return Str::limit(strip_tags($this->body), 100);
+        return Str::limit(strip_tags($this->body), 70);
     }
 
     public function getExcerptShortTitle() {

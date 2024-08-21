@@ -6,7 +6,7 @@
             <div class="inline-block align-bottom bg-white sm:rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-5xl sm:w-full">
 
                 {{-- Modal Header --}}
-                <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600">
+                <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600 dark:bg-gray-800">
                     <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
                         Publish Prompt
                     </h3>
@@ -20,14 +20,17 @@
 
                 {{-- Content --}}
                 <div>
-                    <div class="flex flex-col justify-center bg-gray-200">
+                    <div class="flex flex-col justify-center bg-gray-200 dark:bg-gray-600">
                         <div class="flex flex-col md:flex-row p-2 md:p-5">
                             <div class="content-center px-4">
                                 <div class="flex mb-4 w-full max-w h-80 bg-gray-200 mt-3 md:mt-0">
                                     @if($image)
-                                        <img src="{{ $image->temporaryUrl() }}" alt="" class="rounded-lg object-contain w-full h-lg" >
+                                        <img src="{{ $image->temporaryUrl() }}" alt="" class="rounded-lg object-contain w-full h-lg dark:bg-gray-800" >
                                     @else
-                                        <img src="../public/storage/others/image-placeholder.png" alt="image placeholder" class="object-contain w-full h-full">
+                                        {{-- <img src="../public/storage/others/image-placeholder.png" alt="image placeholder" class="object-contain w-full h-full dark:bg-gray-800"> --}}
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-full h-full dark:text-gray-200 dark:bg-gray-800">
+                                            <path fill-rule="evenodd" d="M1.5 6a2.25 2.25 0 0 1 2.25-2.25h16.5A2.25 2.25 0 0 1 22.5 6v12a2.25 2.25 0 0 1-2.25 2.25H3.75A2.25 2.25 0 0 1 1.5 18V6ZM3 16.06V18c0 .414.336.75.75.75h16.5A.75.75 0 0 0 21 18v-1.94l-2.69-2.689a1.5 1.5 0 0 0-2.12 0l-.88.879.97.97a.75.75 0 1 1-1.06 1.06l-5.16-5.159a1.5 1.5 0 0 0-2.12 0L3 16.061Zm10.125-7.81a1.125 1.125 0 1 1 2.25 0 1.125 1.125 0 0 1-2.25 0Z" clip-rule="evenodd" />
+                                        </svg>
                                     @endif
                                 </div>
                                 <input wire:model='image' accept="image/png, image/jpeg, image/jpg" type="file" id="image" name="image" class="w-full ring-1 ring-inset ring-gray-300 bg-gray-300 text-sm rounded block p-2"/>
@@ -108,8 +111,8 @@
                 </div>
 
                 {{-- Modal Footer --}}
-                <div class="bg-white px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse border-t border-gray-200">
-                    <button type="submit" class="mt-3 w-full inline-flex justify-center rounded-md border shadow-sm px-4 py-2 bg-green-600 text-base font-medium text-white hover:bg-green-700 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm">Publish</button>
+                <div class="bg-white px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse border-t border-gray-200 dark:bg-gray-800 dark:border-zinc-800">
+                    <button type="submit" class="mt-3 w-full inline-flex justify-center rounded-md border shadow-sm px-4 py-2 bg-green-600 text-base font-medium text-white hover:bg-green-700 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm dark:border-gray-800">Publish</button>
                     <button type="button" class="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm" @click="showSubmitModal = false;" data-modal-hide="showSubmitModal">Cancel</button>
                 </div>
             </div>

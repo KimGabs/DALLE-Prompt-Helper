@@ -1,4 +1,4 @@
-<nav class="flex flex-wrap items-center justify-between py-3 px-6 border-b border-gray-100 dark:border-neutral-950 dark:bg-neutral-900">
+<nav class="flex flex-wrap items-center justify-between py-3 px-6 bg-neutral-900 border-b border-gray-100 dark:border-neutral-950 dark:bg-neutral-900">
     <div id="nav-left" class="md:flex items-center">
         <a href="{{ route('home') }}">
             <x-application-logo />
@@ -10,7 +10,7 @@
                 <x-nav-link wire:navigate href="{{ route('home') }}" :active="request()->routeIs('home')">
                     {{ __('Home') }}
                 </x-nav-link>
-                <x-nav-link wire:navigate href="{{ route('post.index') }}" :active="request()->routeIs('post.index')">
+                <x-nav-link wire:navigate href="{{ auth()->check() ? route('post.index', auth()->id()) : route('login')  }}" :active="request()->routeIs('post.index')">
                     {{ __('My Prompts') }}
                 </x-nav-link>
                 <x-nav-link wire:navigate href="{{ route('helper.index') }}" :active="request()->routeIs('helper.index')">
@@ -50,7 +50,7 @@
             <x-responsive-nav-link wire:navigate href="{{ route('home') }}" :active="request()->routeIs('home')">
                 {{ __('Home') }}
             </x-responsive-nav-link>
-            <x-responsive-nav-link wire:navigate href="{{ route('post.index') }}" :active="request()->routeIs('post.index')">
+            <x-responsive-nav-link wire:navigate href="{{ auth()->check() ? route('post.index', auth()->id()) : route('login')  }}" :active="request()->routeIs('post.index')">
                 {{ __('My Prompts') }}
             </x-responsive-nav-link>
             <x-responsive-nav-link wire:navigate href="{{ route('helper.index') }}" :active="request()->routeIs('helper.index')">

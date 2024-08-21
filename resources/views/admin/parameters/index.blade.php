@@ -5,7 +5,7 @@
             
         </div> --}}
         <div class="w-full p-5">
-            <h1 class="text-2xl font-bold subpixel-antialiased">Parameters</h1>
+            <h1 class="text-2xl font-bold subpixel-antialiased dark:text-white">Parameters</h1>
             <div class="w-full text-left py-5">
             </div>
             @if(session('success'))

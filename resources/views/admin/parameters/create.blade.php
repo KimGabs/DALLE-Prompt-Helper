@@ -1,5 +1,5 @@
 <x-app-layout>
-<div class="flex w-full min-h-screen overflow-hidden">
+<div class="flex w-full min-h-screen overflow-hidden dark:text-white">
         <x-sidebar />
     <div class="flex flex-col w-1/2 p-5">
         <h1 class="text-xl font-bold subpixel-antialiased mb-4">Create Parameter</h1>
@@ -18,11 +18,11 @@
         <form action="{{ route('parameters.store') }}" method="POST" class="" enctype="multipart/form-data">
             @csrf
             <div class="mb-5">
-                <label for="name" class="block mb-2 text-sm font-medium text-gray-900">Name:</label>
+                <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Name:</label>
                 <input type="text" name="name" id="name" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" required>
             </div>
             <div class="mb-5">
-                <label for="type" class="block mb-2 text-sm font-medium text-gray-900">Parameter: </label>
+                <label for="type" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Parameter: </label>
                 <select name="type" id="type" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
                     @foreach (config('parameters.types') as $key => $value)
                         <option value="{{ $value }}">{{ $value }}</option>
@@ -30,7 +30,7 @@
                 </select>
             </div>
             <div class="mb-7">
-                <label for="image" class="block mb-2 text-sm font-medium text-gray-900">Image:</label>
+                <label for="image" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Parameter Image:</label>
                 <input type="file" name="image" id="image">
             </div>
             <div class="mb-5">

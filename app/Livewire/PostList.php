@@ -22,9 +22,9 @@ class PostList extends Component
 
     public $userId;
 
-    public function mount()
+    public function mount($id)
     {
-        $this->userId = Auth::id();
+        $this->userId = $id;
     }
 
     public function setSortPost($sort) {
@@ -45,32 +45,20 @@ class PostList extends Component
 
     #[Computed()]
     public function myPosts() {
-        // return redirect()->route('parameters.index')->with('success', $this->userId);
         if (!$this->userId) {
             return redirect()->route('parameters.index')->with('success', $this->userId);
-            return collect(); // Return an empty collection or handle appropriately
+            return collect();
         }
 
         return Post::published()
         ->where('user_id', $this->userId)
         ->where(function ($query) {
             $query->where('title', 'like', "%{$this->search}%")
-                  ->orWhere('category', 'like', "%{$this->search}%");
+                  ->orWhere('category', 'like', "%{$this->search}%")
+                  ->orWhere('body', 'like', "%{$this->search}%");
         })
         ->orderBy('published_at', $this->sort)
-        ->paginate(6);
-    }
-
-    #[Computed()]
-    public function posts() {
-        return Post::published()
-        ->orderBy('published_at', $this->sort)
-        ->where(function ($query) {
-            $query->where('title', 'like', "%{$this->search}%")
-                  ->orWhere('body', 'like', "%{$this->search}%")
-                  ->orWhere('category', 'like', "%{$this->search}%");
-        })
-        ->paginate(4);
+        ->paginate(9);
     }
 
     public function render()

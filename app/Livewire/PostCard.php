@@ -11,7 +11,7 @@ use Livewire\Attributes\Computed;
 class PostCard extends Component
 {
     public Post $post;
-    public $perPage = 18;
+    public $perPage = 12;
 
     #[Url()]
     public $sort = 'desc';
@@ -40,17 +40,7 @@ class PostCard extends Component
     #[On('loadMore')]
     public function loadMore()
     {
-        $this->perPage += 8;
-    }
-
-    public function placeholder()
-    {
-        return <<<'HTML'
-        <div>
-            <!-- Loading spinner... -->
-            <svg>...</svg>
-        </div>
-        HTML;
+        $this->perPage += 14;
     }
 
     public function render()

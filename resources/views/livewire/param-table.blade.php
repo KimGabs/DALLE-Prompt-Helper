@@ -3,7 +3,7 @@
         <div id="filter-selector" class="flex items-center space-x-4 font-light ml-4">
             {{-- <button class="{{ $sort === 'desc' ? 'text-gray-900 border-b border-gray-700': 'text-gray-500'}} py-1" wire:click="setSort('desc')">Recent</button>
             <button class="{{ $sort === 'asc' ? 'text-gray-900 border-b border-gray-700': 'text-gray-500'}} py-1" wire:click="setSort('asc')">Oldest</button> --}}
-            <a href="{{ route('parameters.create') }}" class="px-4 py-2 bg-blue-600 text-white rounded-lg inline-flex hover:bg-blue-700">
+            <a href="{{ route('parameters.create') }}" class="px-4 py-2 bg-orange-600 text-white rounded-lg inline-flex hover:bg-orange-700 dark:bg-orange-600">
                 <span class="inline-flex flex text-center items-center gap-1"> 
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="size-5">
                         <path fill-rule="evenodd" d="M10 18a8 8 0 1 0 0-16 8 8 0 0 0 0 16Zm.75-11.25a.75.75 0 0 0-1.5 0v2.5h-2.5a.75.75 0 0 0 0 1.5h2.5v2.5a.75.75 0 0 0 1.5 0v-2.5h2.5a.75.75 0 0 0 0-1.5h-2.5v-2.5Z" clip-rule="evenodd" />
@@ -16,7 +16,7 @@
             @include('livewire.partials.search-box')
         </div>
     </div>
-    <table class="w-full text-sm text-left border-gray-200 border rtl:text-right text-gray-500 dark:text-gray-400">
+    <table class="w-full text-sm text-left border-gray-200 border rtl:text-right text-gray-500 dark:text-gray-400 dark:border-none">
         <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
             <tr>
                 <th scope="col" class="px-9 py-3">

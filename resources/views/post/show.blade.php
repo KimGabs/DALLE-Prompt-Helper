@@ -17,11 +17,11 @@
                 <div class="row-auto justify-between mb-4">
                     <div class="flex justify-between">
                         <div class="inline-flex items-center">
-                            <a href="#">
+                            <a href="{{ route('post.index', $post->author->id) }}">
                                 <img src="{{ $post->author->profile_photo_url }}" class="h-10 rounded-full" alt="Profile of {{ $post->author->name }}">
                             </a>
                             <div class="inline-flex ml-2 dark:text-white">
-                                <a href="#" class="font-medium hover:text-orange-600">
+                                <a href="{{ route('post.index', $post->author->id) }}" class="font-medium hover:text-orange-600">
                                     <span>{{ $post->author->name }}</span>
                                 </a>
                                 <div class="ml-1">
@@ -126,7 +126,7 @@
                         <div class="grid grid-cols-3 gap-0">
                             @foreach($authorPosts as $authorPost)
                             <div class="aspect-square">
-                                <a href="{{ route('posts.show', $authorPost->slug) }}" class=" inset-0">
+                                <a href="{{ route('post.show', $authorPost->slug) }}" class=" inset-0">
                                     <img src="{{ asset('storage/' . $authorPost->image) }}" alt="{{ $authorPost->title }}" class="w-full h-full object-cover">
                                 </a>
                             </div>

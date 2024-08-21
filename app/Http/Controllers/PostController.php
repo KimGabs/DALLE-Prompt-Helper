@@ -22,9 +22,9 @@ class PostController extends Controller
 
 
     public function index() {
-        if (!Auth::check()) {
-            return redirect('/login');
-        }
+        // if (!Auth::check()) {
+        //     return redirect('/login');
+        // }
 
         $posts = Post::paginate(10); // 10 items per page
 

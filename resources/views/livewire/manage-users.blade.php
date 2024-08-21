@@ -10,7 +10,7 @@
         </ul>
     </div>
     @endif
-    <div class="w-1/2 flex flex-col p-5">
+    <div class="w-1/2 flex flex-col p-5 dark:text-white">
         <h2 class="mt-5">User ID: {{ $user->id }}</h2><br>
         <form action="{{ route('users.update', $user->id) }}" method="POST" class="" enctype="multipart/form-data">
             @csrf
@@ -29,7 +29,7 @@
             <p class="text-md mt-2">
                 {{ __('This email address is unverified.') }}
 
-                <button type="button" class="underline text-md text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" wire:click.prevent="sendEmailVerification">
+                <button type="button" class="underline text-md text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:text-orange-500 dark:hover:text-orange-600" wire:click.prevent="sendEmailVerification">
                     {{ __('Click here to re-send the verification email.') }}
                 </button>
             </p>
@@ -50,7 +50,7 @@
 
 
             <label for="role" class="block mt-5">Current Role: {{ $user->getRoleName() }}</label>
-            <select class="block my-5 rounded-lg w-full border-gray-300" name="role" id="role">
+            <select class="block p-2.5 capitalize my-5 rounded-lg w-full border-gray-300 dark:text-black" name="role" id="role">
                 <option value="">Change Role</option>
                 @foreach($roles as $role)
                     <option value="{{ $role->id }}">{{ $role->name }}</option>

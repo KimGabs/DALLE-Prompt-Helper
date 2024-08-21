@@ -4,7 +4,7 @@
     </x-slot>
 
     <x-slot name="description">
-        {{ __('Update your account\'s profile information and email address.') }}
+        <span class="dark:text-gray-100">{{ __('Update your account\'s profile information and email address.') }}</span>
     </x-slot>
 
     <x-slot name="form">

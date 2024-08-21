@@ -1,10 +1,10 @@
 @props(['post'])
 <figure class="relative group overflow-hidden rounded-sm">
-    <a href="posts/{{ $post->slug }}">
+    <a href="post/{{ $post->slug }}">
         <img
         src="{{ asset('storage/' . $post->image) }}" 
         alt="{{ $post->title }}"
-        class="group transition-all duration-200 object-cover ease-in"
+        class="fade-in-image group transition-all duration-200 object-cover ease-in"
         />
     </a>
     <livewire:like-button :key="'like-button-'.$post->id.now()" :post="$post" :styleDiv="'styleDiv-a'" :styleButton="'styleButton-a dark:bg-gray-800 dark:hover:bg-gray-800'" :likeCount="'likeCount-listpost'" />
@@ -13,11 +13,11 @@
         <div class="w-full flex flex-col gap-2">
         <p class="text-sm font-semibold text-shadow-custom">
             @if (empty($post->title))
-            <a href="posts/{{ $post->slug }}">
+            <a href="post/{{ $post->slug }}">
                 {{ $post->getExcerptTitle() }}
             </a>    
             @else
-            <a href="posts/{{ $post->slug }}">
+            <a href="post/{{ $post->slug }}">
                 {{ $post->title }}
             </a>
             @endif
@@ -53,6 +53,3 @@
 
     </figcaption>
 </figure> 
-
-    
-    {{-- <img src="{{ asset('storage/' . $post->image)  }}"/> --}}

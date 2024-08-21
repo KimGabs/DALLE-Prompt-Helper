@@ -13,12 +13,12 @@ use App\Http\Controllers\ParameterController;
 Route::get('/', HomeController::class)->name('home');
 Route::get('/helper', [HelperController::class, 'index'])->name('helper.index');
 Route::post('/helper', [HelperController::class, 'create'])->name('helper.create');
-Route::get('posts/{slug}', [PostController::class, 'show'])->name('posts.show');
-Route::get('posts/edit/{slug}', [PostController::class, 'edit'])->name('post.edit');
-Route::put('posts/update/{post}', [PostController::class, 'update'])->name('post.update');
+Route::get('post/{slug}', [PostController::class, 'show'])->name('post.show');
+Route::get('post/edit/{slug}', [PostController::class, 'edit'])->name('post.edit');
+Route::put('post/update/{post}', [PostController::class, 'update'])->name('post.update');
 
 
-Route::get('/myprompts', [PostController::class, 'index'])->name('post.index');
+Route::get('/myprompts/{id}', [PostController::class, 'index'])->name('post.index');
 
 
 Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified',
@@ -31,7 +31,6 @@ Route::middleware([AdminMiddleware::class])->group(function () {
     Route::resource('/admin/parameters', 'App\Http\Controllers\Admin\ParameterController');
     Route::resource('/admin/users', 'App\Http\Controllers\Admin\UserController');
     Route::resource('/admin/posts', 'App\Http\Controllers\Admin\PostsController');
-    
 });
 
 

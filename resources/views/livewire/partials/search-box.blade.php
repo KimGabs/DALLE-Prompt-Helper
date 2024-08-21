@@ -8,7 +8,7 @@
                 d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
             </svg>
             </span>
-            <input x-on:keydown.enter="$dispatch('search', { search : query })" x-model="query"
+            <input placeholder="Search prompt" x-on:keydown.enter="$dispatch('search', { search : query })" x-model="query"
             class="w-full md:w-5/6 ml-1 bg-transparent focus:outline-none focus:border-none focus:ring-0 outline-none border-none text-gray-800 placeholder:text-gray-400"
             type="text">
             <x-button class="z-10 mx-0 block sm:hidden dark:bg-orange-600 dark:hover:bg-orange-700" x-on:click="$dispatch('search', {search : query})">Search</x-button>
