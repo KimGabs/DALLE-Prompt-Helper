@@ -13,6 +13,6 @@ class ImportDataSeeder extends Seeder
      */
     public function run()
     {
-        DB::unprepared(file_get_contents(database_path('seeds/sql/your_data_file.sql')));
+        DB::unprepared(file_get_contents(database_path('seeds/dalle_helper.sql')));
     }
 }
