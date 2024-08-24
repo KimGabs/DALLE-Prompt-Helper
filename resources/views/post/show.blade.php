@@ -2,21 +2,52 @@
 <x-app-layout>
     <div class="w-full min-h-screen">
       <div class="container mx-auto px-4 py-10">
-        <div class="grid sm:grid-cols-1 grid-flow-row md:grid-cols-2 lg:grid-cols-2 gap-6">
+        <div class="grid sm:grid-cols-1 grid-flow-row lg:grid-cols-2 gap-6">
             @if(session('success'))
                 <p class="text-green-700 pb-6">{{ session('success') }}</p>
             @endif
             {{-- Left Part --}}
             <div class="col-2 w-full px-2">
-                <img src="{{ asset('storage/' . $post->image) }}" alt="{{ $post->title }}" class="w-full h-auto object-cover rounded-sm">
-                <livewire:post-comments :key="'comments' . $post->id" :$post />
+                <div x-data="{ modalOpen: false, imageSrc: '' }">
+                    <img x-on:click="modalOpen = true; imageSrc = '{{ asset('storage/' . $post->image) }}'" src="{{ asset('storage/' . $post->image) }}" alt="{{ $post->title }}" class="w-full h-auto object-cover rounded-sm">
+
+                    {{-- Modal --}}
+                    <div 
+                    x-show="modalOpen" 
+                    x-cloak
+                    x-transition
+                    class="fixed inset-0 z-50 flex items-center justify-center px-4 text-center bg-neutral-800 bg-opacity-75"
+                >
+                    <!-- Background overlay that closes the modal when clicked -->
+                    <div 
+                        @click="modalOpen = false" 
+                        x-show="modalOpen" 
+                        class="fixed inset-0 bg-gray-500 bg-opacity-40"
+                    ></div>
+
+                        <div class="absolute top-3 right-6">
+                            <button x-on:click="modalOpen = !modalOpen" class="flex items-center justify-center w-10 h-10 rounded-full bg-gray-300 hover:bg-gray-400 transition-all duration-300 ease-out">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6 text-zinc-800">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
+                                  </svg>                                  
+                            </button>
+                        </div>
+
+                        <!-- Image content inside the modal -->
+                        <div class="relative py-2">
+                            <img :src="imageSrc" class="max-w-full max-h-screen rounded shadow-lg">
+                        </div>
+                    </div>
+                
+                </div>
+                    <livewire:post-comments :key="'comments' . $post->id" :$post />
             </div>  
             {{-- Right Part --}}
             <div class="col-2 grid-cols-1 w-full">
                 {{-- Author Profile --}}
                 <div class="row-auto justify-between mb-4">
-                    <div class="flex justify-between">
-                        <div class="inline-flex items-center">
+                    <div class="flex flex-col sm:flex-row justify-between">
+                        <div class="inline-flex self-center items-center">
                             <a href="{{ route('post.index', $post->author->id) }}">
                                 <img src="{{ $post->author->profile_photo_url }}" class="h-10 rounded-full" alt="Profile of {{ $post->author->name }}">
                             </a>
@@ -34,7 +65,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="inline-flex items-center dark:text-white">
+                        <div class="pt-3 self-center inline-flex items-center dark:text-gray-200">
                             <div class="inline-flex items-center">
                                 <span class="text-md inline-flex items-center text-center font-mono">
                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="size-5 mx-1">
@@ -68,7 +99,7 @@
                     </div>
                     {{-- The Copy Button --}}
                     <div class="prompt-buttons mt-4 text-center">
-                        <button onclick="copyToClipboard()" class="text-white font-black inline-flex items-center bg-orange-600  hover:bg-orange-700 focus:ring-4 focus:ring-transparent rounded-lg px-5 py-2.5 me-2 mb-2 focus:outline-none dark:focus:ring-blue-800">
+                        <button onclick="copyToClipboard()" class="text-white font-black inline-flex items-center bg-orange-600  hover:bg-orange-700 focus:ring-transparent rounded-lg px-5 py-2.5 me-2 mb-2 focus:outline-none">
                             <svg class="w-6 h-6 dark:text-white mr-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
                                 <path fill-rule="evenodd" d="M18 3a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-1V9a4 4 0 0 0-4-4h-3a1.99 1.99 0 0 0-1 .267V5a2 2 0 0 1 2-2h7Z" clip-rule="evenodd"/>
                                 <path fill-rule="evenodd" d="M8 7.054V11H4.2a2 2 0 0 1 .281-.432l2.46-2.87A2 2 0 0 1 8 7.054ZM10 7v4a2 2 0 0 1-2 2H4v6a2 2 0 0 0 2 2h7a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3Z" clip-rule="evenodd"/>
@@ -77,7 +108,7 @@
                         </button>
                         @if(auth()->check() && auth()->user()->id === $post->user_id)
                             <a href="{{ route('post.edit', $post->id) }}">
-                                <button class="text-white font-black inline-flex items-center bg-orange-600  hover:bg-orange-700 focus:ring-4 focus:ring-transparent rounded-lg px-5 py-2.5 me-2 mb-2 focus:outline-none dark:focus:ring-blue-800">
+                                <button class="text-white font-black inline-flex items-center bg-orange-600  hover:bg-orange-700 focus:ring-transparent rounded-lg px-5 py-2.5 me-2 mb-2 focus:outline-none">
                                     <svg class="w-6 h-6 dark:text-white mr-1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
                                         <path d="m5.433 13.917 1.262-3.155A4 4 0 0 1 7.58 9.42l6.92-6.918a2.121 2.121 0 0 1 3 3l-6.92 6.918c-.383.383-.84.685-1.343.886l-3.154 1.262a.5.5 0 0 1-.65-.65Z" />
                                         <path d="M3.5 5.75c0-.69.56-1.25 1.25-1.25H10A.75.75 0 0 0 10 3H4.75A2.75 2.75 0 0 0 2 5.75v9.5A2.75 2.75 0 0 0 4.75 18h9.5A2.75 2.75 0 0 0 17 15.25V10a.75.75 0 0 0-1.5 0v5.25c0 .69-.56 1.25-1.25 1.25h-9.5c-.69 0-1.25-.56-1.25-1.25v-9.5Z" />
@@ -121,7 +152,7 @@
 
                   {{-- Collection Container--}}
                   <div class="bg-white border border-gray-200 rounded-lg mt-5 text-left py-3 px-4 self-center dark:bg-gray-700 dark:text-white dark:border-gray-800">
-                    <h3 class="text-md mb-2 text-gray-500 font-bold uppercase text-center">Author's Collection</h3>
+                    <a href="{{ route('post.index', $post->author->id) }}"><h3 class="text-md mb-2 text-gray-500 font-bold uppercase text-center">Author's Collection</h3></a>
                         @if($authorPosts->count())
                         <div class="grid grid-cols-3 gap-0">
                             @foreach($authorPosts as $authorPost)

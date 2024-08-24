@@ -120,7 +120,7 @@ class PostController extends Controller
 
         $post->update(array_filter($incomingFields));
 
-        return redirect()->route('post.index')->with('success', 'User updated successfully.');
+        return redirect()->route('post.index', auth::id())->with('success', 'Post updated successfully.');
     }
 
     public function show($identifier)
@@ -133,7 +133,11 @@ class PostController extends Controller
             }
     
             $post->incrementReadCount();
-            $authorPosts = $post->author->posts; // Retrieves all posts by the author
+            $authorPosts = $post->author->posts()
+            ->where('id', '!=', $post->id)
+            ->latest() // Order by latest
+            ->take(9)  // Limit to 9 posts
+            ->get();
         
             return view('post.show', [
                 'post' => $post,

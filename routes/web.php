@@ -17,8 +17,10 @@ Route::get('post/{slug}', [PostController::class, 'show'])->name('post.show');
 Route::get('post/edit/{slug}', [PostController::class, 'edit'])->name('post.edit');
 Route::put('post/update/{post}', [PostController::class, 'update'])->name('post.update');
 
-
 Route::get('/myprompts/{id}', [PostController::class, 'index'])->name('post.index');
+Route::get('about-us', function() {return view('about-us');})->name('about-us');
+Route::get('/resources/guidance-scale', function() {return view('resources/guidance-scale');})->name('resources.guidance-scale');
+
 
 
 Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified',

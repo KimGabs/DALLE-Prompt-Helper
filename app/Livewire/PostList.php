@@ -3,6 +3,7 @@
 namespace App\Livewire;
 
 use App\Models\Post;
+use App\Models\User;
 use Livewire\Component;
 use Livewire\Attributes\On;
 use Livewire\Attributes\Url;
@@ -21,6 +22,9 @@ class PostList extends Component
     public $search = '';
 
     public $userId;
+
+    #[Url()]
+    public $displayLikes = false;
 
     public function mount($id)
     {
@@ -46,7 +50,6 @@ class PostList extends Component
     #[Computed()]
     public function myPosts() {
         if (!$this->userId) {
-            return redirect()->route('parameters.index')->with('success', $this->userId);
             return collect();
         }
 
@@ -61,8 +64,45 @@ class PostList extends Component
         ->paginate(9);
     }
 
+    #[Computed()]
+    public function myLikes() {
+        if (!$this->userId) {
+            return collect();
+        }
+
+        $user = User::find($this->userId);
+        if (!$user) {
+            return collect();
+        }
+
+        // Fetch the liked posts of the specified user
+        return Post::select('posts.*')
+        ->join('post_like', 'posts.id', '=', 'post_like.post_id')
+        ->where('post_like.user_id', $this->userId)
+        ->where(function ($query) {
+            $query->where('title', 'like', "%{$this->search}%")
+                ->orWhere('category', 'like', "%{$this->search}%")
+                ->orWhere('body', 'like', "%{$this->search}%");
+        })
+        ->orderBy('post_like.created_at', $this->sort) // Order by the time the post was liked
+        // ->orderBy('published_at', $this->sort)
+        ->paginate(9);
+    }
+
+    public function showPosts()
+    {
+        $this->displayLikes = false;
+    }
+
+    public function showLikes()
+    {
+        $this->displayLikes = true;
+    }
+
     public function render()
     {
-        return view('livewire.post-list');
+        return view('livewire.post-list', [
+            'posts' => $this->displayLikes ? $this->myLikes() : $this->myPosts(),
+        ]);
     }
 }

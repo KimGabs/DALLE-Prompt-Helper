@@ -4,19 +4,8 @@ document.addEventListener('livewire:navigated', function () {
     var dropdowns = document.querySelectorAll('.parameters'); 
     var confirmButtons = document.querySelectorAll('.confirmButton');
     var buttonsInput = document.getElementById('buttonsInput'); 
-    var copyButton = document.getElementById('copyButton');
     var finalPrompt = document.getElementById('finalPrompt');
-
-    copyButton.addEventListener('click', function() {
-        navigator.clipboard.writeText(readOnlyInput.value)
-        .then(function() {
-            alert('Copied to clipboard: ' + readOnlyInput.value);
-        })
-        .catch(function(error) {
-            alert('Failed to copy text: ', error);
-        })
-    });
-
+    
     // Event listener for user input
     if (userInput) {
         userInput.addEventListener('keyup', function () {

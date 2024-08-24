@@ -25,7 +25,7 @@
                             <div class="content-center px-4">
                                 <div class="flex mb-4 w-full max-w h-80 bg-gray-200 mt-3 md:mt-0">
                                     @if($image)
-                                        <img src="{{ $image->temporaryUrl() }}" alt="" class="rounded-lg object-contain w-full h-lg dark:bg-gray-800" >
+                                        <img src="{{ $image->temporaryUrl() }}" alt="" class="rounded-lg object-contain w-full h-lg dark:bg-gray-900" >
                                     @else
                                         {{-- <img src="../public/storage/others/image-placeholder.png" alt="image placeholder" class="object-contain w-full h-full dark:bg-gray-800"> --}}
                                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-full h-full dark:text-gray-200 dark:bg-gray-800">

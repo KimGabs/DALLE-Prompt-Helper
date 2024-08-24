@@ -57,6 +57,10 @@ class User extends Authenticatable implements MustVerifyEmail
         $query->where('created_at', '<=', Carbon::now());
     }
 
+    public function readableVerifiedAt() {
+        return Carbon::parse($this->email_verified_at)->format('F, Y');
+    }
+
     /**
      * The attributes that should be hidden for serialization.
      *
@@ -84,6 +88,10 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function likes(){
         return $this->belongsToMany(Post::class, 'post_like')->withTimestamps();
+    }
+
+    public function likeCount(){
+        return $this->likes()->count();
     }
 
     public function hasLiked(Post $post){

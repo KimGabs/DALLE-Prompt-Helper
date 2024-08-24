@@ -9,12 +9,12 @@ use App\Models\Post;
 use Illuminate\Support\Str;
 
 
-class helperController extends Controller
+class HelperController extends Controller
 {
 
     private function authorizePostUpdate(Post $post) 
     {
-        return auth()->user()->id === $post->user_id;
+        return auth::user()->id === $post->user_id;
     }
 
     public function index() {
@@ -22,7 +22,7 @@ class helperController extends Controller
     }
 
     public function create(Request $request) {
-        if (!auth()->check()) {
+        if (!auth::check()) {
             return redirect('/login')->with('login-first-publish', 'Please login first to publish your prompt.');
         }
 
@@ -68,7 +68,7 @@ class helperController extends Controller
         ]);
         
         // session()->flash('success', 'User Created Success!');
-        return redirect()->route('post.index')->with('success', 'Post updated successfully.');
+        return redirect()->route('post.index', auth::id())->with('success', 'Post updated successfully.');
 
         // return view('livewire.submit-modal');
     }

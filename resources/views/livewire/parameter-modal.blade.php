@@ -1,5 +1,16 @@
 <div x-data="{ showModal: false }" x-init="showModal = false">
-    <button type="button" class="bg-blue-500 text-white p-3 rounded w-full" @click="showModal = true">{{ ucfirst($type) }}</button>
+    {{-- <button type="button" class="bg-blue-600 text-white font-bold p-3 rounded w-full hover:bg-blue-700" @click="showModal = true">
+        <span>
+            {{ ucfirst($type) }}
+        </span>
+    </button> --}}
+    <button type="button" class="rounded relative inline-flex group items-center justify-center px-3.5 py-2 m-1 cursor-pointer border-b-4 active:border-orange-600 active:shadow-none shadow-lg bg-gradient-to-tr from-orange-600 to-orange-500 border-orange-700 text-white w-full hover:bg-orange-700" @click="showModal = true">
+        <span class="absolute w-0 h-0 transition-all duration-300 ease-out bg-orange-500 rounded group-hover:w-full group-hover:h-full"></span>
+        <span class="relative font-semibold">
+            {{ ucfirst($type) }}
+        </span>
+    </button>
+    
     {{-- <textarea id="" class="">{{ implode(', ', $parameters->whereIn('id', $selectedParameters)->pluck('name')->toArray()) }}</textarea> --}}
 
     <div x-show="showModal" class="fixed z-10 inset-0 overflow-y-auto" aria-labelledby="modal-title" role="dialog" aria-modal="true" style="display: none">

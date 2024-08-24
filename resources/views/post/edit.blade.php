@@ -13,7 +13,7 @@
             <form action="{{ route('post.update', $post->id) }}" method="POST" enctype="multipart/form-data">            
                 @csrf
                 @method('PUT')
-            <div class="flex flex-col justify-center bg-gray-200 rounded-lg p-1 dark:bg-gray-600">
+            <div class="flex flex-col justify-center bg-gray-200 rounded-lg p-1 dark:bg-gray-800">
                 <div class="flex flex-col md:flex-row">
                     @livewire('update-image', ['post' => $post])
                     <div class="flex flex-col flex-auto gap-4 p-4">

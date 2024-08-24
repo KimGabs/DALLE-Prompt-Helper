@@ -13,6 +13,10 @@
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
         <script src="https://cdn.tailwindcss.com"></script>
+        <script src="https://unpkg.com/imagesloaded@5/imagesloaded.pkgd.min.js"></script>
+        <script src="https://unpkg.com/infinite-scroll@4/dist/infinite-scroll.pkgd.min.js"></script>
+        <script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.js"></script> 
+
         <!-- Styles -->
         @livewireStyles
         {{-- <link rel="stylesheet" href="resources/css/app.css"> --}}
@@ -25,8 +29,11 @@
         @include('layouts.partials.header')
         
         @yield('hero')
-
+        @if( Route::is('home')  )
+            <main class="container overflow-x-hidden max-w-full flex flex-grow">
+        @else
             <main class="container overflow-x-hidden mx-auto px-5 flex flex-grow">
+        @endif
                 {{ $slot }}
             </main>
 

@@ -11,7 +11,7 @@ use Livewire\Attributes\Computed;
 class PostCard extends Component
 {
     public Post $post;
-    public $perPage = 12;
+    public $perPage = 14;
 
     #[Url()]
     public $sort = 'desc';
@@ -27,14 +27,15 @@ class PostCard extends Component
     #[Computed()]
     public function posts() 
     {
-        return Post::published()
+        return Post::published(10)
         ->orderBy('published_at', $this->sort)
         ->where(function ($query) {
-            $query->where('title', 'like', "%{$this->search}%")
-                  ->orWhere('body', 'like', "%{$this->search}%")
-                  ->orWhere('category', 'like', "%{$this->search}%")
+            $query->where('title', 'REGEXP', '[[:<:]]' . preg_quote($this->search, '/') . '[[:>:]]')
+                  ->orWhere('body', 'REGEXP', '[[:<:]]' . preg_quote($this->search, '/') . '[[:>:]]')
+                  ->orwhere('title', 'REGEXP', '[[:<:]]' . preg_quote($this->search, '/') . '[[:>:]]')
                   ->orWhere('ai_model', 'like', "%{$this->search}%");
         })->take($this->perPage)->get();
+
     }
 
     #[On('loadMore')]
@@ -42,6 +43,22 @@ class PostCard extends Component
     {
         $this->perPage += 14;
     }
+
+    // #[On('loadMore')]
+    // public function loadMore()
+    // {
+    //     $this->perPage += 14; // Adjust the number of posts you want to load
+    //     return Post::published()
+    //         ->orderBy('published_at', $this->sort)
+    //         ->where(function ($query) {
+    //             $query->where('title', 'like', "%{$this->search}%")
+    //                 ->orWhere('body', 'like', "%{$this->search}%")
+    //                 ->orWhere('category', 'like', "%{$this->search}%")
+    //                 ->orWhere('ai_model', 'like', "%{$this->search}%");
+    //         })
+    //         ->take($this->perPage)
+    //         ->get();
+    // }
 
     public function render()
     {

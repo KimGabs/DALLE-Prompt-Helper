@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
+    public Post $post;
     /**
      * Handle the incoming request.
      */
