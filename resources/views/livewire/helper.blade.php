@@ -1,27 +1,17 @@
 <div>
     <form-section>
-        @error('image') 
-            <x-banner :style="'danger'" :message="$message" />
-        @enderror
-        @error('post_category') 
-            <x-banner :style="'danger'" :message="$message" />
-        @enderror
-        @error('ai_model') 
-            <x-banner :style="'danger'" :message="$message" />
-        @enderror
-        @error('version') 
-            <x-banner :style="'danger'" :message="$message" />
-        @enderror
-        @error('body') 
-            <x-banner :style="'danger'" :message="$message" />
-        @enderror
+        @foreach(['image', 'post_category', 'ai_model', 'version', 'body'] as $field)
+            @error($field)
+                <x-banner :style="'danger'" :message="$message" />
+            @enderror
+        @endforeach
         
         <div class="w-full text-center mt-7">
             <h1 class="text-2xl font-bold dark:text-white">Prompt Helper</h1>
             <br>
             <textarea id="userInput" name="userInput" placeholder="Enter your main idea here" rows="6" cols="80" class="block p-2.5 w-full text-lg text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-0 dark:bg-zinc-700 dark:border-zinc-600 dark:placeholder-gray-400 dark:text-white"></textarea>
             <br>
-            <textarea id="readOnlyInput" name="body" placeholder="Your output prompt will be display here" rows="6" class="block p-2.5 w-full text-lg text-gray-900 bg-gray-50 rounded-lg border-gray-300 focus:ring-0 dark:bg-zinc-700 dark:border-zinc-600 dark:placeholder-gray-400 dark:text-white" readonly></textarea>
+            <textarea id="readOnlyInput" name="body" placeholder="Your output prompt will be display here" rows="6" class="block p-2.5 w-full text-lg text-gray-900 bg-gray-50 rounded-lg border-gray-300 focus:ring-0 dark:bg-zinc-700 dark:border-zinc-600 dark:placeholder-gray-400 dark:text-white"></textarea>
         </div>
         <div class="rounded-lg border border-gray-300 bg-zinc-50 shadow-md px-7 py-8 mt-8 dark:bg-zinc-700 dark:border-zinc-600">
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 h-30 dark:text-white">
@@ -30,7 +20,7 @@
                 <div class="grid grid-cols-2 grid-flow-col">
                     <div class="col-span-2">
                         <label>{{ $type }}</label>
-                    <select name="parameters[{{ $type }}]" class="parameters mt-2 bg-gray-50 border border-gray-300 text-gray-900 text-md rounded-lg focus:ring-blue-500 focus:border-blue-500 w-full px-5 py-2.5 dark:bg-gray-700 dark:border-gray-600 dark:bg-zinc-800 dark:text-white border-transparent focus:border-transparent focus:ring-0">
+                    <select name="parameters[{{ $type }}]" class="parameters mt-2 bg-gray-50 border border-gray-300 text-gray-900 text-md rounded-lg focus:ring-blue-500 focus:border-blue-500 w-full px-5 py-2.5 dark:bg-gray-700 dark:border-gray-600 dark:bg-zinc-800 dark:text-white border-transparent focus:border-transparent">
                         <option value="">--Select--</option>
                         @foreach ($parameters as $parameter)
                             <option value="{{ $parameter->name }}">{{ $parameter->name }}</option>
@@ -40,7 +30,7 @@
                 </div>
                 @endforeach
             </div>
-                @livewire('parent-component')
+                <livewire:parent-component />
             <div class="flex flex-col sm:flex-row justify-center">
                 <button type="button" id="copyButton" class="px-4 py-2 bg-transparent mt-3 w-full justify-center inline-flex rounded-md text-xs md:text-md border-2 border-amber-500 text-base font-bold text-amber-500 hover:bg-amber-500 hover:text-white sm:mt-0 sm:ml-3 sm:w-auto dark:text-amber-500  transition ease-in-out duration-300">Copy to Clipboard</button>
                 <button type="reset" id="customResetButton" class=" px-4 py-2 bg-transparent mt-3 w-full inline-flex justify-center rounded-md text-xs md:text-md border-2 border-red-500 text-base font-bold text-red-500 hover:bg-red-500 hover:text-white sm:mt-0 sm:ml-3 sm:w-auto dark:text-red-500 transition ease-in-out duration-300" @click="$wire.dispatch('resetParameters');">Reset</button>

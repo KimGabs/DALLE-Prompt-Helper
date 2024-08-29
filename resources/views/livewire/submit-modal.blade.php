@@ -33,7 +33,7 @@
                                         </svg>
                                     @endif
                                 </div>
-                                <input wire:model='image' accept="image/png, image/jpeg, image/jpg" type="file" id="image" name="image" class="w-full ring-1 ring-inset ring-gray-300 bg-gray-300 text-sm rounded block p-2"/>
+                                <input wire:model='image' accept="image/png, image/jpeg, image/jpg, image/webp" type="file" id="image" name="image" class="w-full ring-1 ring-inset ring-gray-300 bg-gray-300 text-sm rounded block p-2"/>
                             </div>
                             <div class="flex flex-col flex-auto gap-4 py-4">
                                 <div class="flex-auto">

@@ -96,11 +96,11 @@
                     </div>
                 </div>
             </div>
-            <input name="oldImage" type="text" value="{{ $post->image }}" class="hidden"></input>
-            <input name="oldModel" type="text" value="{{ $post->ai_model }}" class="hidden"></input>
+            {{-- <input name="oldImage" type="text" value="{{ $post->image }}" class="hidden"></input> --}}
+            {{-- <input name="oldModel" type="text" value="{{ $post->ai_model }}" class="hidden"></input>
             <input name="oldVersion" type="text" value="{{ $post->version }}" class="hidden"></input>
             <input name="oldWidth" type="text" value="{{ $post->width }}" class="hidden"></input>
-            <input name="oldHeight" type="text" value="{{ $post->height }}" class="hidden"></input>
+            <input name="oldHeight" type="text" value="{{ $post->height }}" class="hidden"></input> --}}
             </form>
             <div class="py-6">
                 <a href="../">Go Back</a>

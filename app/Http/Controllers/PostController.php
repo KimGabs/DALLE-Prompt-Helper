@@ -22,9 +22,6 @@ class PostController extends Controller
 
 
     public function index() {
-        // if (!Auth::check()) {
-        //     return redirect('/login');
-        // }
 
         $posts = Post::paginate(10); // 10 items per page
 
@@ -38,7 +35,10 @@ class PostController extends Controller
         }
         
         $post = Post::findOrFail($id);
-        // return view('post.edit', compact('post'));
+
+        if(!$this->authorizePostUpdate($post)) {
+            return redirect()->route('home');
+        }
         
         $categories = config('post.categories');
         $aiModels = config('ai_models.models');
@@ -105,18 +105,6 @@ class PostController extends Controller
         }
         
         $incomingFields['slug'] = $slug;
-
-        // $post->update([
-        //     'body' => $incomingFields['body'],
-        //     'image' => $incomingFields['image'],
-        //     'title' => $incomingFields['title'],
-        //     'category' => $incomingFields['post_category'],
-        //     'ai_model' => $incomingFields['ai_model'],
-        //     'version' => $incomingFields['version'],
-        //     'width' => $incomingFields['width'],
-        //     'height' => $incomingFields['height'],
-        //     'slug' => $incomingFields['slug']
-        // ]);
 
         $post->update(array_filter($incomingFields));
 

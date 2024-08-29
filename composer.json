@@ -8,7 +8,7 @@
         "php": "^8.2",
         "ext-intl": "*",
         "dasundev/livewire-dropzone": "*",
-        "intervention/image": "^3.7",
+        "guzzlehttp/guzzle": "^7.9",
         "jorenvanhocht/laravel-share": "^4.2",
         "laravel/framework": "^11.0",
         "laravel/jetstream": "^5.1",
