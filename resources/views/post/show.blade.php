@@ -9,7 +9,7 @@
             {{-- Left Part --}}
             <div class="col-2 w-full px-2">
                 <div x-data="{ modalOpen: false, imageSrc: '' }">
-                    <img x-on:click="modalOpen = true; imageSrc = '{{ asset('storage/' . $post->image) }}'" src="{{ asset('storage/' . $post->image) }}" alt="{{ $post->title }}" class="w-full h-auto object-cover rounded-sm">
+                    <img x-on:click="modalOpen = true; imageSrc = '{{ secure_asset('storage/' . $post->image) }}'" src="{{ secure_asset('storage/' . $post->image) }}" alt="{{ $post->title }}" class="w-full h-auto object-cover rounded-sm">
 
                     {{-- Modal --}}
                     <div 
@@ -158,7 +158,7 @@
                             @foreach($authorPosts as $authorPost)
                             <div class="aspect-square">
                                 <a href="{{ route('post.show', $authorPost->slug) }}" class=" inset-0">
-                                    <img src="{{ asset('storage/' . $authorPost->image) }}" alt="{{ $authorPost->title }}" class="w-full h-full object-cover">
+                                    <img src="{{ secure_asset('storage/' . $authorPost->image) }}" alt="{{ $authorPost->title }}" class="w-full h-full object-cover">
                                 </a>
                             </div>
                             @endforeach

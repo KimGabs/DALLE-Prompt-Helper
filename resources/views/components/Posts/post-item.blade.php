@@ -2,7 +2,7 @@
         <figure class="relative group overflow-hidden rounded-lg">
             <a href="{{ route('post.show', $post->slug) }}">
                 <img
-                  src="{{ asset('storage/' . $post->image) }}" 
+                  src="{{ secure_asset('storage/' . $post->image) }}" 
                   alt="{{ $post->title }}"
                   class="w-full h-96 group transition-all duration-200 object-cover"/>
             </a>

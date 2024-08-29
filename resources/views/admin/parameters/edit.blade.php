@@ -35,7 +35,7 @@
                     <input type="file" name="image" id="image">
                     @if($parameter->image)
                         <div class="py-4">
-                            <img src="{{ asset('storage/' . $parameter->image) }}" alt="Current Image" width="400">
+                            <img src="{{ secure_asset('storage/' . $parameter->image) }}" alt="Current Image" width="400">
                         </div>
                     @endif
                 </div>
