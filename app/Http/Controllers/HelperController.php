@@ -43,7 +43,6 @@ class HelperController extends Controller
         $current_date_time = Carbon::now()->toDateTimeString();
 
         $imagePath = null;
-        // try{
             if ($request->hasFile('image')) {
                 $imageFile = $request->file('image');
                 $storePath = 'public/uploads';
@@ -55,10 +54,8 @@ class HelperController extends Controller
                 list($width, $height) = getimagesize($storedPath);
                 
                 $imagePath = "uploads/{$originFilename}";
-        }
-        // }catch(\Throwable $th){
-        //     return response()->json(false);
-        // }    
+             }
+
 
         $first8Words = substr($filename, 0, 8);
         $slug = str::slug($incomingFields['ai_model'] . "-" . $incomingFields['version'] . "-" . str_replace(' ', '-', $first20Words));

@@ -50,7 +50,7 @@ class PostController extends Controller
         // Validate and update the parameter
         $incomingFields = $request->validate([
             'body' => 'required|string',
-            'newImage' => 'nullable|image|mimes:jpeg,png,jpg|max:4096',
+            'newImage' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:4096',
             'title' => 'nullable|string',
             'post_category' => 'required|string',
             'ai_model' => 'nullable|string|max:255',
@@ -78,9 +78,21 @@ class PostController extends Controller
                     Storage::delete('public/' . $post->image);
                 }
 
-                $imagePath = $request->file('newImage')->store('/uploads', 'public');
-                $filename = pathinfo($imagePath, PATHINFO_FILENAME);
-                list($width, $height) = getimagesize('storage/' . $imagePath);
+                $imageFile = $request->file('newImage');
+                $extension = $imageFile->extension();
+                $storePath = 'public/uploads';
+                if($incomingFields['ai_model']){
+                    $filename = str::slug($first20Words . "-" . $incomingFields['ai_model'] . "-" . $incomingFields['version'] . "-" . uniqid());
+                }else{
+                    $filename = str::slug($first20Words . "-" .  $post->model . "-" . $post->version  . "-" . uniqid());
+                }
+                $originFilename = $filename . '.' . $extension;
+                $imageFile->storeAs($storePath, $originFilename);
+                
+                $storedPath = storage_path("app/public/uploads/{$originFilename}");
+                list($width, $height) = getimagesize($storedPath);
+                
+                $imagePath = "uploads/{$originFilename}";
             }
             else {
                 $imagePath = $post->image;

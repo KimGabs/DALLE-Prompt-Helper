@@ -30,12 +30,11 @@ class PostCard extends Component
         return Post::published(10)
         ->orderBy('published_at', $this->sort)
         ->where(function ($query) {
-            $query->where('title', 'REGEXP', '[[:<:]]' . preg_quote($this->search, '/') . '[[:>:]]')
-                  ->orWhere('body', 'REGEXP', '[[:<:]]' . preg_quote($this->search, '/') . '[[:>:]]')
-                  ->orwhere('title', 'REGEXP', '[[:<:]]' . preg_quote($this->search, '/') . '[[:>:]]')
-                  ->orWhere('ai_model', 'like', "%{$this->search}%");
+            $searchPattern = '[[:<:]]' . preg_quote($this->search, '/') . '[[:>:]]';
+            $query->where('title', '~*', $searchPattern)
+                  ->orWhere('body', '~*', $searchPattern)
+                  ->orWhere('ai_model', 'ILIKE', "%{$this->search}%");
         })->take($this->perPage)->get();
-
     }
 
     #[On('loadMore')]
