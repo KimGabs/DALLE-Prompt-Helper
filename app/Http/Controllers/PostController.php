@@ -22,6 +22,9 @@ class PostController extends Controller
 
 
     public function index() {
+        // if (!Auth::check()) {
+        //     return redirect('/login');
+        // }
 
         $posts = Post::paginate(10); // 10 items per page
 
@@ -35,10 +38,7 @@ class PostController extends Controller
         }
         
         $post = Post::findOrFail($id);
-
-        if(!$this->authorizePostUpdate($post)) {
-            return redirect()->route('home');
-        }
+        // return view('post.edit', compact('post'));
         
         $categories = config('post.categories');
         $aiModels = config('ai_models.models');
@@ -50,7 +50,7 @@ class PostController extends Controller
         // Validate and update the parameter
         $incomingFields = $request->validate([
             'body' => 'required|string',
-            'newImage' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:4096',
+            'newImage' => 'nullable|image|mimes:jpeg,png,jpg|max:4096',
             'title' => 'nullable|string',
             'post_category' => 'required|string',
             'ai_model' => 'nullable|string|max:255',
@@ -78,21 +78,9 @@ class PostController extends Controller
                     Storage::delete('public/' . $post->image);
                 }
 
-                $imageFile = $request->file('newImage');
-                $extension = $imageFile->extension();
-                $storePath = 'public/uploads';
-                if($incomingFields['ai_model']){
-                    $filename = str::slug($first20Words . "-" . $incomingFields['ai_model'] . "-" . $incomingFields['version'] . "-" . uniqid());
-                }else{
-                    $filename = str::slug($first20Words . "-" .  $post->model . "-" . $post->version  . "-" . uniqid());
-                }
-                $originFilename = $filename . '.' . $extension;
-                $imageFile->storeAs($storePath, $originFilename);
-                
-                $storedPath = storage_path("app/public/uploads/{$originFilename}");
-                list($width, $height) = getimagesize($storedPath);
-                
-                $imagePath = "uploads/{$originFilename}";
+                $imagePath = $request->file('newImage')->store('/uploads', 'public');
+                $filename = pathinfo($imagePath, PATHINFO_FILENAME);
+                list($width, $height) = getimagesize('storage/' . $imagePath);
             }
             else {
                 $imagePath = $post->image;
@@ -117,6 +105,18 @@ class PostController extends Controller
         }
         
         $incomingFields['slug'] = $slug;
+
+        // $post->update([
+        //     'body' => $incomingFields['body'],
+        //     'image' => $incomingFields['image'],
+        //     'title' => $incomingFields['title'],
+        //     'category' => $incomingFields['post_category'],
+        //     'ai_model' => $incomingFields['ai_model'],
+        //     'version' => $incomingFields['version'],
+        //     'width' => $incomingFields['width'],
+        //     'height' => $incomingFields['height'],
+        //     'slug' => $incomingFields['slug']
+        // ]);
 
         $post->update(array_filter($incomingFields));
 

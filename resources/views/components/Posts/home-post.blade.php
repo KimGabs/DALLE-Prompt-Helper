@@ -2,7 +2,7 @@
 <div class="grid-item group overflow-hidden relative rounded-md mb-4">
         <a href="post/{{ $post->slug }}">
             <img
-            src="{{ secure_asset('storage/' . $post->image) }}" 
+            src="{{ asset('storage/' . $post->image) }}" 
             alt="{{ $post->title }}"
             class="masonry-content fade-in-image overflow-hidden group transition-all duration-200 object-cover ease-in"
             />

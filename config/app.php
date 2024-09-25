@@ -16,7 +16,7 @@ return [
     |
     */
 
-    // 'driver' => \Intervention\Image\Drivers\Gd\Driver::class,
+    'driver' => \Intervention\Image\Drivers\Gd\Driver::class,
 
     /*
     |--------------------------------------------------------------------------
@@ -68,7 +68,7 @@ return [
     |
     */
 
-    'url' => env('APP_URL', 'https://dalleprompthelper.com'),
+    'url' => env('APP_URL', 'http://localhost'),
 
     /*
     |--------------------------------------------------------------------------

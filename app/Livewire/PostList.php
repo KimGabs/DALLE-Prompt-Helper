@@ -17,8 +17,6 @@ class PostList extends Component
 
     #[Url()]
     public $sort = 'desc';
-
-    private $pagination = 9;
     
     #[Url()]
     public $search = '';
@@ -40,14 +38,13 @@ class PostList extends Component
 
     #[On('search')]
     public function updateSearch($search) {
-        $this->resetPage();
         $this->search = $search;
     }
 
     public function clearFilters(){
         $this->search='';
         // $this->category = '';
-        $this->resetPage(); 
+        $this->resetPage();
     }
 
     #[Computed()]
@@ -64,7 +61,7 @@ class PostList extends Component
                   ->orWhere('body', 'like', "%{$this->search}%");
         })
         ->orderBy('published_at', $this->sort)
-        ->paginate($this->pagination);
+        ->paginate(9);
     }
 
     #[Computed()]
@@ -89,7 +86,7 @@ class PostList extends Component
         })
         ->orderBy('post_like.created_at', $this->sort) // Order by the time the post was liked
         // ->orderBy('published_at', $this->sort)
-        ->paginate($this->pagination);
+        ->paginate(9);
     }
 
     public function showPosts()

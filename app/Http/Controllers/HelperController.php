@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\Post;
 use Illuminate\Support\Str;
 
+
 class HelperController extends Controller
 {
 
@@ -27,7 +28,7 @@ class HelperController extends Controller
 
         $incomingFields = $request->validate([
             'body' => 'required|string',
-            'image' => 'required|image|mimes:jpeg,png,jpg,webp|max:4096',
+            'image' => 'required|image|mimes:jpeg,png,jpg|max:4096',
             'title' => 'nullable|string',
             'post_category' => 'required|string',
             'ai_model' => 'required|string|max:255',
@@ -44,21 +45,13 @@ class HelperController extends Controller
 
         $imagePath = null;
             if ($request->hasFile('image')) {
-                $imageFile = $request->file('image');
-                $storePath = 'public/uploads';
-                $filename = str::slug($first20Words . "-" . $incomingFields['ai_model'] . "-" . $incomingFields['version'] . "-" . uniqid());
-                $originFilename = $filename . '.' . $imageFile->extension();
-                $imageFile->storeAs($storePath, $originFilename);
-                
-                $storedPath = storage_path("app/public/uploads/{$originFilename}");
-                list($width, $height) = getimagesize($storedPath);
-                
-                $imagePath = "uploads/{$originFilename}";
-             }
-
+                $imagePath = $request->file('image')->store('/uploads', 'public');
+                $filename = pathinfo($imagePath, PATHINFO_FILENAME);
+                list($width, $height) = getimagesize('storage/' . $imagePath);
+        }
 
         $first8Words = substr($filename, 0, 8);
-        $slug = str::slug($incomingFields['ai_model'] . "-" . $incomingFields['version'] . "-" . str_replace(' ', '-', $first20Words));
+        $slug = str::slug($first8Words . "-" . $incomingFields['ai_model'] . "-" . $incomingFields['version'] . "-" . str_replace(' ', '-', $first20Words));
 
         Post::create([
             'user_id' => Auth::id(),

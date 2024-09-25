@@ -4,7 +4,6 @@ namespace App\Livewire;
 
 use Livewire\Component;
 use App\Models\Parameter;
-use GuzzleHttp\Client;
 
 class Helper extends Component
 {    

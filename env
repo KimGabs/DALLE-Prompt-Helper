@@ -3,7 +3,7 @@ APP_ENV=local
 APP_KEY=base64:mwU+25oLm4ou3E0bo63ww4cArsgiQGa7KbdYOd98rBc=
 APP_DEBUG=true
 APP_TIMEZONE=UTC
-APP_URL=https://localhost
+APP_URL=http://localhost
 
 APP_LOCALE=en
 APP_FALLBACK_LOCALE=en
