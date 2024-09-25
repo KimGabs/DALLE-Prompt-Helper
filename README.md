@@ -21,7 +21,7 @@ Before we start, make sure you have the following installed:
 ## Installation
 
 1. Unzip the downloaded archive
-2. Copy and paste DALLE-Prompt-Helper-Main folder in your projects folder. 
+2. Copy and paste the unzipped folder in your projects folder. 
 3. In your terminal run composer install and npm install
 4. In phpmyadmin, Create a database named “dalle_helper” and run php artisan db:seed --class=ImportDataSeeder to seed the records into the tables. Alternatively, you can import the database/seed/dalle_helper.sql into the created database (“dalle_helper”) 
 5. Copy .env.backup to .env and updated the configurations (mainly the database configuration)
