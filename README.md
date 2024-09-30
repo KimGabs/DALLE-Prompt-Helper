@@ -38,3 +38,13 @@ After the output prompt has been generated, you can then copy and paste it in DA
 This is a non-commercial software designed both for the purpose of improving productivity at companies and groups relying on AI image generation, and individuals who enjoy experimenting with generative AI for fun.
 
 For further information, you can refer to the documentation linked here: https://docs.google.com/document/d/15P9EBTjKnpde_tuiPd_HqiiAab2eY9TTZR-FUI_OpN0/edit?usp=sharing
+
+## Software Development Risks and Restrictions
+
+### Risk: Third-party API Dependency
+Since the **DALL-E prompt helper** relies on embedded AI image generation services (i.e. hugging face ai image generator), any downtime and rate limiting can affect your service. For example, users will have to wait for 30 minutes to use the ai service again
+
+### Risk: Performance and Optimization
+Using **XAMPP** for local development may not replicate the performance or scalability of a production server, leading to bottlenecks or unoptimized queries once deployed.
+
+**Mitigation:** Regularly test performance on a live server environment and use profiling tools to optimize SQL queries, reduce redundant API calls, and improve overall performance.
